@@ -1,15 +1,15 @@
 package net.devsambuca.view;
 
-import net.devsambuca.controller.DevController;
-import net.devsambuca.model.Developer;
+import net.devsambuca.controller.SkillController;
+import net.devsambuca.model.Skill;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-public class DeveloperView {
+public class SkillView {
     boolean exit;
-    DevController devController = new DevController();
+    SkillController skillController = new SkillController();
 
 
     public void run() {
@@ -64,7 +64,7 @@ public class DeveloperView {
                 System.out.println("Thanks for using our application");
                 break;
             case 1:
-                showAllDeveloper();
+                showAllSkill();
                 break;
             case 2:
                 create();
@@ -83,9 +83,9 @@ public class DeveloperView {
         }
     }
 
-    private void showAllDeveloper(){
-        List<Developer> dev = devController.getAll();
-        for (Developer d1 : dev)
+    private void showAllSkill(){
+        List<Skill> skill = skillController.getAll();
+        for (Skill d1 : skill)
             System.out.println(d1);
     }
 
@@ -94,8 +94,8 @@ public class DeveloperView {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-                System.out.println("\nInput ID developer: ");
-                devController.read(Long.parseLong(reader.readLine()));
+                System.out.println("\nInput ID skilleloper: ");
+                skillController.read(Long.parseLong(reader.readLine()));
                 System.out.println(reader);
 
             } catch (NumberFormatException e) {
@@ -111,18 +111,12 @@ public class DeveloperView {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Developer developer = new Developer();
-            developer.setId(Long.parseLong(reader.readLine()));
-            System.out.println("Input firstname: ");
-            developer.setFirstName(reader.readLine());
-            System.out.println("Input lastname: ");
-            developer.setLastName(reader.readLine());
-            System.out.println("Input specialty: ");
-            developer.setSpecialty(reader.readLine());
-           System.out.println("Input salary: ");
-//            developer.setSkills();
-            devController.create(developer);
-            System.out.println(developer);
+            Skill skilleloper = new Skill();
+            skilleloper.setId(Long.parseLong(reader.readLine()));
+            System.out.println("Input name: ");
+            skilleloper.setName(reader.readLine());
+            skillController.create(skilleloper);
+            System.out.println(skilleloper);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,17 +127,11 @@ public class DeveloperView {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Developer developer = new Developer();
-            developer.setId(Long.parseLong(reader.readLine()));
-            System.out.println("Input firstname: ");
-            developer.setFirstName(reader.readLine());
-            System.out.println("Input lastname: ");
-            developer.setLastName(reader.readLine());
-            System.out.println("Input specialty: ");
-            developer.setSpecialty(reader.readLine());
-           System.out.println("Input salary: ");
-//            developer.setSkills(reader.readLine());
-            devController.update(developer);
+            Skill skilleloper = new Skill();
+            skilleloper.setId(Long.parseLong(reader.readLine()));
+            System.out.println("Input name: ");
+            skilleloper.setName(reader.readLine());
+            skillController.update(skilleloper);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -153,8 +141,8 @@ public class DeveloperView {
     private void delete(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Input ID developer: ");
-            devController.delete(Long.parseLong(reader.readLine()));
+            System.out.println("Input ID skilleloper: ");
+            skillController.delete(Long.parseLong(reader.readLine()));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -171,17 +159,17 @@ public class DeveloperView {
 
     private void showMenu() {
         System.out.println("\nPlease make a selection");
-        System.out.println("1. Show all developers");
-        System.out.println("2. Find developer by ID");
-        System.out.println("3. Create developer");
-        System.out.println("4. Update developer");
-        System.out.println("5. Delete developer");
+        System.out.println("1. Show all skillelopers");
+        System.out.println("2. Find skilleloper by ID");
+        System.out.println("3. Create skilleloper");
+        System.out.println("4. Update skilleloper");
+        System.out.println("5. Delete skilleloper");
         System.out.println("0. Exit");
     }
 
     private void selectMenu() {
         System.out.println("\nPlease make a selection");
-        System.out.println("1. developer");
+        System.out.println("1. skilleloper");
         System.out.println("2. skill");
         System.out.println("3. team");
         System.out.println("4. project");
