@@ -8,9 +8,8 @@ public class Project {
     private String name;
     private Set<Team> teams;
 
-    public Project(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    public Project() {
+
     }
 
     public Long getId() {
