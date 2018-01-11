@@ -23,10 +23,6 @@ public class Team {
         this.name = name;
     }
 
-    public Team(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     @Override
     public String toString() {
