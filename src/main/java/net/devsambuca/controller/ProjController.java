@@ -4,9 +4,6 @@ import net.devsambuca.dao.IDao;
 import net.devsambuca.dao.IDaoProject;
 import net.devsambuca.model.Project;
 
-/**
- * Created by smb on 12.01.2018.
- */
 public class ProjController implements IDao<Project> {
 
         private IDaoProject projectDAO = new IDaoProject();
