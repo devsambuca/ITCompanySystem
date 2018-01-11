@@ -9,12 +9,7 @@ public class Customer {
     private String adress;
     private Set project;
 
-    public Customer(Long id, String firstName, String lastName, String adress, Set project) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.adress = adress;
-        this.project = project;
+    public Customer() {
     }
 
     public Long getId() {

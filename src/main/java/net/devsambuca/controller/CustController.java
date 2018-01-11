@@ -1,6 +1,7 @@
 package net.devsambuca.controller;
 
 import net.devsambuca.dao.IDao;
+import net.devsambuca.dao.IDaoCustomer;
 import net.devsambuca.model.Customer;
 
 public class CustController implements IDao<Customer> {
