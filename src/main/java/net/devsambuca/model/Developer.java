@@ -1,6 +1,6 @@
 package net.devsambuca.model;
 
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Set;
 
 public class Developer {
@@ -10,6 +10,15 @@ public class Developer {
     private String lastName;
     private String specialty;
     private Set<Skill> skills;
+    private BigDecimal salary;
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
 
     public Long getId() {
         return id;
@@ -42,5 +51,7 @@ public class Developer {
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
     }
+
+
 
 }

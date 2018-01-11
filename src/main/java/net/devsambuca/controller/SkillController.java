@@ -12,8 +12,9 @@ public class SkillController implements IDao<Skill> {
         this.iDaoSkill.create(skill);
     }
 
-    public void read(long id) {
+    public Skill read(long id) {
         this.iDaoSkill.read(id);
+        return null;
     }
 
     public void update(Skill skill) {

@@ -5,6 +5,7 @@ import net.devsambuca.model.Developer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class DeveloperView {
     boolean exit;
@@ -14,27 +15,46 @@ public class DeveloperView {
     public void run() {
         printHeader();
         while (!exit) {
+            selectMenu();
+            int choice1 = getInputEntity();
+            performAction(choice1);
             showMenu();
-            int choice = getInput();
-            performAction(choice);
+            int choice2 = getInputMenu();
+            performAction(choice2);
 
         }
     }
 
-    private int getInput() {
-        int choice = -1;
+    private int getInputEntity() {
+        int choice1 = -1;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        while (choice < 0 || choice > 5) {
+        while (choice1 < 0 || choice1 > 6) {
             try {
                 System.out.println("\nEnter your choice: ");
-                choice = Integer.parseInt(reader.readLine());
+                choice1 = Integer.parseInt(reader.readLine());
+            } catch (NumberFormatException e) {
+                System.out.print("Entity not found. Please try again.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return choice1;
+    }
+
+    private int getInputMenu() {
+        int choice2 = -1;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        while (choice2 < 0 || choice2 > 6) {
+            try {
+                System.out.println("\nEnter your choice: ");
+                choice2 = Integer.parseInt(reader.readLine());
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return choice;
+        return choice2;
     }
 
     private void performAction(int choice) {
@@ -43,20 +63,20 @@ public class DeveloperView {
                 exit = true;
                 System.out.println("Thanks for using our application");
                 break;
-//            case 1:
+            case 1:
 //                showAllDeveloper();
-//                break;
+                break;
             case 2:
-                inputID();
+                create();
                 break;
             case 3:
-                createDeveloper();
+                read();
                 break;
             case 4:
-                updateDeveloper();
+                update();
                 break;
             case 5:
-                deleteDeveloper();
+                delete();
                 break;
             default:
                 System.out.println("An unknown error has occured.");
@@ -69,7 +89,7 @@ public class DeveloperView {
 //            System.out.println(d1);
 //    }
 
-    private void inputID() {
+    private void read() {
         while (true) {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -87,7 +107,7 @@ public class DeveloperView {
         }
     }
 
-    private void createDeveloper() {
+    private void create() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
@@ -99,7 +119,7 @@ public class DeveloperView {
             developer.setLastName(reader.readLine());
             System.out.println("Input specialty: ");
             developer.setSpecialty(reader.readLine());
-//            System.out.println("Input salary: ");
+           System.out.println("Input salary: ");
 //            developer.setSkills();
             devController.create(developer);
             System.out.println(developer);
@@ -109,7 +129,7 @@ public class DeveloperView {
         }
     }
 
-    private void updateDeveloper() {
+    private void update() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
@@ -121,7 +141,7 @@ public class DeveloperView {
             developer.setLastName(reader.readLine());
             System.out.println("Input specialty: ");
             developer.setSpecialty(reader.readLine());
-//            System.out.println("Input salary: ");
+           System.out.println("Input salary: ");
 //            developer.setSkills(reader.readLine());
             devController.update(developer);
 
@@ -130,7 +150,7 @@ public class DeveloperView {
         }
     }
 
-    private void deleteDeveloper(){
+    private void delete(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID developer: ");
@@ -156,6 +176,17 @@ public class DeveloperView {
         System.out.println("3. Create developer");
         System.out.println("4. Update developer");
         System.out.println("5. Delete developer");
+        System.out.println("0. Exit");
+    }
+
+    private void selectMenu() {
+        System.out.println("\nPlease make a selection");
+        System.out.println("1. developer");
+        System.out.println("2. skill");
+        System.out.println("3. team");
+        System.out.println("4. project");
+        System.out.println("5. company");
+        System.out.println("6. customer");
         System.out.println("0. Exit");
     }
 }

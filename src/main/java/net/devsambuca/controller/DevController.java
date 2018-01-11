@@ -12,8 +12,9 @@ public class DevController implements IDao<Developer> {
         this.developerDAO.create(developer);
     }
 
-    public void read(long id) {
+    public Developer read(long id) {
          this.developerDAO.read(id);
+        return null;
     }
 
     public void update(Developer developer) {
