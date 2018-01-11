@@ -8,7 +8,7 @@ import java.io.Writer;
 
 public class IDaoDeveloper implements IDao<Developer> {
 
-    public static final String FILE_PATH = "dev.txt";
+    public static final String FILE_PATH = "developers.txt";
 
     public void create(Developer developer) {
 

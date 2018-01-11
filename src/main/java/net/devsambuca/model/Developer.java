@@ -1,5 +1,6 @@
 package net.devsambuca.model;
 
+import java.util.List;
 import java.util.Set;
 
 public class Developer {
@@ -42,11 +43,4 @@ public class Developer {
         this.specialty = specialty;
     }
 
-    public Set<Skill> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(Set<Skill> skills) {
-        this.skills = skills;
-    }
 }
