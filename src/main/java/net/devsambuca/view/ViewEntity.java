@@ -7,21 +7,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-public class DeveloperView {
+public class ViewEntity {
     boolean exit;
     DevController devController = new DevController();
 
-
     public void run() {
-        printHeader();
         while (!exit) {
-            selectMenu();
+            showMenu();
             int choice1 = getInputEntity();
             performAction(choice1);
-            showMenu();
-            int choice2 = getInputMenu();
-            performAction(choice2);
-
         }
     }
 
@@ -41,22 +35,6 @@ public class DeveloperView {
         return choice1;
     }
 
-    private int getInputMenu() {
-        int choice2 = -1;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        while (choice2 < 0 || choice2 > 6) {
-            try {
-                System.out.println("\nEnter your choice: ");
-                choice2 = Integer.parseInt(reader.readLine());
-            } catch (NumberFormatException e) {
-                System.out.print("Invalid selection. Please try again.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return choice2;
-    }
-
     private void performAction(int choice) {
         switch (choice) {
             case 0:
@@ -64,7 +42,7 @@ public class DeveloperView {
                 System.out.println("Thanks for using our application");
                 break;
             case 1:
-                showAllDeveloper();
+                showAll();
                 break;
             case 2:
                 create();
@@ -83,7 +61,7 @@ public class DeveloperView {
         }
     }
 
-    private void showAllDeveloper(){
+    private void showAll(){
         List<Developer> dev = devController.getAll();
         for (Developer d1 : dev)
             System.out.println(d1);
@@ -161,32 +139,13 @@ public class DeveloperView {
         }
     }
 
-    private void printHeader() {
-        System.out.println("-----------------------------------------------");
-        System.out.println("|                                             |");
-        System.out.println("|        WELCOME DATA BASE IT COMPANY         |");
-        System.out.println("|                                             |");
-        System.out.println("-----------------------------------------------");
-    }
-
     private void showMenu() {
         System.out.println("\nPlease make a selection");
-        System.out.println("1. Show all developers");
-        System.out.println("2. Find developer by ID");
-        System.out.println("3. Create developer");
-        System.out.println("4. Update developer");
-        System.out.println("5. Delete developer");
-        System.out.println("0. Exit");
-    }
-
-    private void selectMenu() {
-        System.out.println("\nPlease make a selection");
-        System.out.println("1. developer");
-        System.out.println("2. skill");
-        System.out.println("3. team");
-        System.out.println("4. project");
-        System.out.println("5. company");
-        System.out.println("6. customer");
+        System.out.println("1. Show all");
+        System.out.println("2. read");
+        System.out.println("3. create");
+        System.out.println("4. update");
+        System.out.println("5. delete");
         System.out.println("0. Exit");
     }
 }
