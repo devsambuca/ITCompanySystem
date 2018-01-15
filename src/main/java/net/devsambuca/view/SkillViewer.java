@@ -48,8 +48,8 @@ public class SkillViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID skill: ");
-                skillController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                System.out.println(skillController.read(Long.parseLong(reader.readLine())));
+
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {

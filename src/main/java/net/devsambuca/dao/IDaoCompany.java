@@ -70,11 +70,11 @@ public class IDaoCompany implements IDao<Company> {
 
     public void delete(long id) {
         List<Company> listCompany = getAll();
-        Iterator<Company> iDev = listCompany.iterator();
-        while (iDev.hasNext()) {
-            Company s = iDev.next();
+        Iterator<Company> iCom = listCompany.iterator();
+        while (iCom.hasNext()) {
+            Company s = iCom.next();
             if (s.getId() == id)
-                iDev.remove();
+                iCom.remove();
         }
         Writer writer = null;
         try {

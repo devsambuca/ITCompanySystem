@@ -1,1 +1,1 @@
-1,FordDialog
+Company{id=1, name='32132131', projects=null}
