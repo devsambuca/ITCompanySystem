@@ -1,2 +1,2 @@
-1,123,13,10000,32423
-2,Kolya,Pushkin,Java Developer,null
+1,Vasya,Petrov,PHP Developer,50000.0
+
