@@ -2,6 +2,7 @@ package net.devsambuca.view;
 
 import net.devsambuca.controller.CustController;
 import net.devsambuca.model.Customer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -87,7 +88,7 @@ public class CustViewer {
             System.out.println("Input lastname: ");
             customer.setLastName(reader.readLine());
             System.out.println("Input address: ");
-            customer.setAdress( reader.readLine());
+            customer.setAdress(reader.readLine());
             projController.update(customer);
         } catch (IOException e) {
             e.printStackTrace();

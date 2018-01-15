@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IDaoCompany implements IDao<Company> {
-    public static final String FILE_PATH = "teams.txt";
+    public static final String FILE_PATH = "company.txt";
 
-    public void create(Company team) {
+    public void create(Company company) {
         Writer writer = null;
-        String str = team.getId() + "," + team.getName();
+        String str = company.getId() + "," + company.getName();
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');

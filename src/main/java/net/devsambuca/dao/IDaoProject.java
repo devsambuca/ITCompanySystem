@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IDaoProject implements IDao<Project> {
-    public static final String FILE_PATH = "teams.txt";
+    public static final String FILE_PATH = "project.txt";
 
-    public void create(Project team) {
+    public void create(Project project) {
         Writer writer = null;
-        String str = team.getId() + "," + team.getName();
+        String str = project.getId() + "," + project.getName();
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');

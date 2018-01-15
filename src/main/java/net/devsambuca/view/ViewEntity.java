@@ -1,9 +1,5 @@
 package net.devsambuca.view;
 
-import net.devsambuca.model.Company;
-import net.devsambuca.model.Project;
-import net.devsambuca.model.Team;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,11 +7,12 @@ import java.io.InputStreamReader;
 public class ViewEntity {
     boolean exit;
 
-    public void run() {
-            mainMenu();
-            int choice = getInputEntity();
-            performActionWithEntity(choice);
-        }
+    public void run() throws IOException {
+        printHeader();
+        mainMenu();
+        int choice = getInputEntity();
+        performActionWithEntity(choice);
+    }
 
     private void performActionWithEntity(int choice) {
         switch (choice) {
@@ -52,9 +49,7 @@ public class ViewEntity {
         }
     }
 
-
-
-    private int getInputEntity() {
+    private int getInputEntity() throws IOException {
         int choice = -1;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (choice < 0 || choice > 6) {
@@ -86,6 +81,14 @@ public class ViewEntity {
         return choice;
     }
 
+    private void printHeader() {
+        System.out.println("-----------------------------------------------");
+        System.out.println("|                                             |");
+        System.out.println("|        WELCOME DATA BASE IT COMPANY         |");
+        System.out.println("|                                             |");
+        System.out.println("-----------------------------------------------");
+    }
+
     private void mainMenu() {
         System.out.println("\nPlease make a selection 0-6");
         System.out.println("1. Developer");
@@ -105,6 +108,5 @@ public class ViewEntity {
         System.out.println("4. delete");
         System.out.println("0. exit");
     }
-
 }
 
