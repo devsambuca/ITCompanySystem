@@ -3,7 +3,6 @@ package net.devsambuca.controller;
 import net.devsambuca.dao.IDao;
 import net.devsambuca.dao.IDaoSkill;
 import net.devsambuca.model.Skill;
-
 import java.util.List;
 
 public class SkillController implements IDao<Skill> {
