@@ -1,5 +1,7 @@
 package net.devsambuca.view;
 
+import net.devsambuca.model.Company;
+import net.devsambuca.model.Project;
 import net.devsambuca.model.Team;
 
 import java.io.BufferedReader;
@@ -34,7 +36,16 @@ public class ViewEntity {
                 teamViewer.run();
                 break;
             case 4:
-                delete();
+                ProjViewer projViewer = new ProjViewer();
+                projViewer.run();
+                break;
+            case 5:
+                ComViewer comViewer = new ComViewer();
+                comViewer.run();
+                break;
+            case 6:
+                CustViewer custViewer = new CustViewer();
+                custViewer.run();
                 break;
             default:
                 System.out.println("An unknown error has occured.");
