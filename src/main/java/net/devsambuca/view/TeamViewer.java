@@ -1,15 +1,15 @@
 package net.devsambuca.view;
 
-import net.devsambuca.controller.SkillController;
-import net.devsambuca.model.Skill;
+import net.devsambuca.controller.TeamController;
+import net.devsambuca.model.Team;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class SkillViewer {
-
+public class TeamViewer {
     boolean exit;
-    SkillController skillController = new SkillController();
+
+    TeamController teamController = new TeamController();
     ViewEntity viewEntity = new ViewEntity();
 
     public void run() {
@@ -47,8 +47,8 @@ public class SkillViewer {
         while (true) {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                System.out.println("\nInput ID skill: ");
-                skillController.read(Long.parseLong(reader.readLine()));
+                System.out.println("\nInput ID team: ");
+                teamController.read(Long.parseLong(reader.readLine()));
                 System.out.println(reader);
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
@@ -63,11 +63,11 @@ public class SkillViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Skill skill = new Skill();
-            skill.setId(Long.parseLong(reader.readLine()));
+            Team team = new Team();
+            team.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
-            skill.setName(reader.readLine());
-            skillController.create(skill);
+            team.setName(reader.readLine());
+            teamController.create(team);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,25 +77,26 @@ public class SkillViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Skill skill = new Skill();
-            skill.setId(Long.parseLong(reader.readLine()));
+            Team team = new Team();
+            team.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
-            skill.setName(reader.readLine());
-            skillController.update(skill);
+            team.setName(reader.readLine());
+            teamController.update(team);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void delete(){
+    private void delete() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Input ID skill: ");
-            skillController.delete(Long.parseLong(reader.readLine()));
+            System.out.println("Input ID team: ");
+            teamController.delete(Long.parseLong(reader.readLine()));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
 
