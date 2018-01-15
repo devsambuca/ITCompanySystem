@@ -1,14 +1,14 @@
 package net.devsambuca.view;
 
-import net.devsambuca.controller.ProjController;
-import net.devsambuca.model.Project;
+import net.devsambuca.controller.ComController;
+import net.devsambuca.model.Company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ProjViewer {
+public class ComViewer {
     boolean exit;
-    ProjController projController = new ProjController();
+    ComController comController = new ComController();
     ViewEntity viewEntity = new ViewEntity();
 
     public void run() {
@@ -47,7 +47,7 @@ public class ProjViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                projController.read(Long.parseLong(reader.readLine()));
+                comController.read(Long.parseLong(reader.readLine()));
                 System.out.println(reader);
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
@@ -62,11 +62,11 @@ public class ProjViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Project project = new Project();
-            project.setId(Long.parseLong(reader.readLine()));
+            Company comect = new Company();
+            comect.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
-            project.setName(reader.readLine());
-            projController.create(project);
+            comect.setName(reader.readLine());
+            comController.create(comect);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,11 +76,11 @@ public class ProjViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Project project = new Project();
-            project.setId(Long.parseLong(reader.readLine()));
+            Company comect = new Company();
+            comect.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
-            project.setName(reader.readLine());
-            projController.update(project);
+            comect.setName(reader.readLine());
+            comController.update(comect);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,10 +90,9 @@ public class ProjViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            projController.delete(Long.parseLong(reader.readLine()));
+            comController.delete(Long.parseLong(reader.readLine()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-
