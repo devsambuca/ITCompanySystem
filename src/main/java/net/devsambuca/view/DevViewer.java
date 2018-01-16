@@ -47,8 +47,8 @@ public class DevViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID developer: ");
-                devController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                System.out.println(devController.read(Long.parseLong(reader.readLine())));
+
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
