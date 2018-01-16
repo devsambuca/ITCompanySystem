@@ -1,6 +1,7 @@
 package net.devsambuca.dao;
 
 import net.devsambuca.model.Company;
+import net.devsambuca.model.Project;
 
 import java.io.*;
 import java.util.*;
@@ -108,5 +109,9 @@ public class IDaoCompany implements IDao<Company> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void create(){
+
     }
 }
