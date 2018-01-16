@@ -45,7 +45,7 @@ public class IDaoCompany implements IDao<Company> {
     }
 
     public void update(Company team) {
-        List<Company> listCompany = getAll();
+        Set<Company> listCompany = getAll();
         Iterator<Company> iDev = listCompany.iterator();
         while (iDev.hasNext()) {
             Company s = iDev.next();
@@ -69,7 +69,7 @@ public class IDaoCompany implements IDao<Company> {
     }
 
     public void delete(long id) {
-        List<Company> listCompany = getAll();
+        Set<Company> listCompany = getAll();
         Iterator<Company> iCom = listCompany.iterator();
         while (iCom.hasNext()) {
             Company s = iCom.next();
@@ -89,8 +89,8 @@ public class IDaoCompany implements IDao<Company> {
         }
     }
 
-    public List<Company> getAll() {
-        List<Company> listCompanyList = new ArrayList<Company>();
+    public Set<Company> getAll() {
+        Set<Company> listCompanyList = new HashSet<Company>();
         try {
             // find the file with the team date
             File listCompanyFile = new File(FILE_PATH);

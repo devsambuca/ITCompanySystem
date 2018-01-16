@@ -47,7 +47,7 @@ public class IDaoCustomer implements IDao<Customer> {
     }
 
     public void update(Customer customer) {
-        List<Customer> dev = getAll();
+        Set<Customer> dev = getAll();
         Iterator<Customer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
@@ -71,7 +71,7 @@ public class IDaoCustomer implements IDao<Customer> {
     }
 
     public void delete(long id) {
-        List<Customer> dev = getAll();
+        Set<Customer> dev = getAll();
         Iterator<Customer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
@@ -91,8 +91,8 @@ public class IDaoCustomer implements IDao<Customer> {
         }
     }
 
-    public List<Customer> getAll() {
-        List<Customer> devList = new ArrayList<Customer>();
+    public Set<Customer> getAll() {
+        Set<Customer> devList = new HashSet<Customer>();
         try {
             // find the file with the customer date
             File devFile = new File(FILE_PATH);

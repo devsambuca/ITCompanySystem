@@ -45,7 +45,7 @@ public class IDaoTeam implements IDao<Team> {
     }
 
     public void update(Team team) {
-        List<Team> listTeam = getAll();
+        Set<Team> listTeam = getAll();
         Iterator<Team> iDev = listTeam.iterator();
         while (iDev.hasNext()) {
             Team s = iDev.next();
@@ -69,7 +69,7 @@ public class IDaoTeam implements IDao<Team> {
     }
 
     public void delete(long id) {
-        List<Team> listTeam = getAll();
+        Set<Team> listTeam = getAll();
         Iterator<Team> iDev = listTeam.iterator();
         while (iDev.hasNext()) {
             Team s = iDev.next();
@@ -89,8 +89,8 @@ public class IDaoTeam implements IDao<Team> {
         }
     }
 
-    public List<Team> getAll() {
-        List<Team> listTeamList = new ArrayList<Team>();
+    public Set<Team> getAll() {
+        Set<Team> listTeamList = new HashSet<Team>();
         try {
             // find the file with the team date
             File listTeamFile = new File(FILE_PATH);
