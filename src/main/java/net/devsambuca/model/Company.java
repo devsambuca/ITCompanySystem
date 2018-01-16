@@ -30,10 +30,6 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", projects=" + projects +
-                '}';
+        return id + ", " + name+ ", " + projects;
     }
 }

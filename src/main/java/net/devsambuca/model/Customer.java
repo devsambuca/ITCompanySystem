@@ -43,4 +43,13 @@ public class Customer {
     public void setAdress(String adress) {
         this.adress = adress;
     }
+
+    @Override
+    public String toString() {
+        return id +
+                ", " + firstName + '\'' +
+                ", " + lastName + '\'' +
+                ", " + adress + '\'' +
+                ", " + project;
+    }
 }

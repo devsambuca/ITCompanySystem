@@ -63,10 +63,10 @@ public class Developer {
     @Override
     public String toString() {
         return  id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", specialty='" + specialty + '\'' +
-                ", skills=" + skills +
-                ", salary=" + salary;
+                ", " + firstName +
+                ", " + lastName +
+                ", " + specialty +
+                ", " + skills +
+                ", " + salary;
     }
 }

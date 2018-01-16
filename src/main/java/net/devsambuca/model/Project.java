@@ -1,6 +1,6 @@
 package net.devsambuca.model;
 
-import java.util.Set;
+        import java.util.Set;
 
 public class Project {
 
@@ -28,5 +28,8 @@ public class Project {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return id + ", " + name+ ", " + teams;
+    }
 }
