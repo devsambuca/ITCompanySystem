@@ -52,6 +52,11 @@ public class Developer {
         this.specialty = specialty;
     }
 
+    public Set<Skill> getSkills() {
+        return skills;
+    }
 
-
+    public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
+    }
 }

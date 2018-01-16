@@ -11,8 +11,11 @@ public class IDaoDeveloper implements IDao<Developer> {
     public static final String FILE_PATH = "developers.txt";
 
     public void create(Developer developer) {
+        Set<Developer> developers = new HashSet<Developer>();
+        developers.add(developer);
         Writer writer = null;
         String str = developer.getId() + "," + developer.getFirstName() + "," + developer.getLastName() + "," + developer.getSpecialty() + "," + developer.getSalary();
+
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');
@@ -49,7 +52,7 @@ public class IDaoDeveloper implements IDao<Developer> {
 
 
     public void update(Developer developer) {
-        List<Developer> dev = getAll();
+        Set<Developer> dev = getAll();
         Iterator<Developer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Developer s = iDev.next();
@@ -74,7 +77,7 @@ public class IDaoDeveloper implements IDao<Developer> {
 
 
     public void delete(long id) {
-        List<Developer> dev = getAll();
+        Set<Developer> dev = getAll();
         Iterator<Developer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Developer s = iDev.next();
@@ -94,8 +97,8 @@ public class IDaoDeveloper implements IDao<Developer> {
         }
     }
 
-    public List<Developer> getAll() {
-        List<Developer> devList = new ArrayList<Developer>();
+    public Set<Developer> getAll() {
+        Set<Developer> devList = new HashSet<Developer>();
         try {
             // find the file with the developer date
             File devFile = new File(FILE_PATH);

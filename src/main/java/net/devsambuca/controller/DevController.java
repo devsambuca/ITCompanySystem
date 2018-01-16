@@ -5,6 +5,7 @@ import net.devsambuca.dao.IDaoDeveloper;
 import net.devsambuca.model.Developer;
 
 import java.util.List;
+import java.util.Set;
 
 public class DevController implements IDao<Developer> {
 
@@ -27,7 +28,7 @@ public class DevController implements IDao<Developer> {
         this.developerDAO.delete(id);
     }
 
-    public List<Developer> getAll() {
+    public Set<Developer> getAll() {
       return this.developerDAO.getAll();
     }
 }
