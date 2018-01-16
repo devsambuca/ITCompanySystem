@@ -2,16 +2,15 @@ package net.devsambuca.dao;
 
 import net.devsambuca.model.Customer;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoCustomer implements IDao<Customer> {
 
     public static final String FILE_PATH = "customers.txt";
 
     public void create(Customer customer) {
+        Set<Customer> customers = new HashSet<Customer>();
+        customers.add(customer);
         Writer writer = null;
         String str = customer.getId() + "," + customer.getFirstName() + "," + customer.getLastName() + "," + customer.getAdress();
         try {

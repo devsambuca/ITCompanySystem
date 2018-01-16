@@ -3,15 +3,14 @@ package net.devsambuca.dao;
 import net.devsambuca.model.Project;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoProject implements IDao<Project> {
     public static final String FILE_PATH = "project.txt";
 
     public void create(Project project) {
+        Set<Project> projects = new HashSet<Project>();
+        projects.add(project);
         Writer writer = null;
         String str = project.getId() + "," + project.getName();
         try {

@@ -2,16 +2,15 @@ package net.devsambuca.dao;
 
 import net.devsambuca.model.Team;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoTeam implements IDao<Team> {
 
     public static final String FILE_PATH = "teams.txt";
 
     public void create(Team team) {
+        Set<Team> teams = new HashSet<Team>();
+        teams.add(team);
         Writer writer = null;
         String str = team.getId() + "," + team.getName();
         try {

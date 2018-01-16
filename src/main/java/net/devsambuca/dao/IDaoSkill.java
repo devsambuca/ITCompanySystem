@@ -10,6 +10,8 @@ public class IDaoSkill implements IDao<Skill> {
     private static final String FILE_PATH = "skills.txt";
 
     public void create(Skill skill) {
+        Set<Skill> skills = new HashSet<Skill>();
+        skills.add(skill);
         Writer writer = null;
         String str = skill.getId() + "," + skill.getName();
         try {

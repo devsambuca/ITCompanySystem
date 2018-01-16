@@ -1,16 +1,16 @@
 package net.devsambuca.dao;
 
 import net.devsambuca.model.Company;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoCompany implements IDao<Company> {
     public static final String FILE_PATH = "company.txt";
 
     public void create(Company company) {
+        Set<Company> companies = new HashSet<Company>();
+        companies.add(company);
         Writer writer = null;
         String str = company.getId() + "," + company.getName();
         try {
