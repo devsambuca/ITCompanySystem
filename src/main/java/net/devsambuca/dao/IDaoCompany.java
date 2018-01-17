@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 public class IDaoCompany implements IDao<Company> {
-    public static final String FILE_PATH = "company.txt";
+    public static final String FILE_PATH = "D:/JAVA/project/ITCompanySystem/src/main/resources/company.txt";
 
     public void create(Company company) {
         Set<Company> companies = new HashSet<Company>();
@@ -45,15 +45,15 @@ public class IDaoCompany implements IDao<Company> {
         return null;
     }
 
-    public void update(Company team) {
+    public void update(Company company) {
         Set<Company> listCompany = getAll();
         Iterator<Company> iDev = listCompany.iterator();
         while (iDev.hasNext()) {
             Company s = iDev.next();
-            if (s.getId() == team.getId())
+            if (s.getId() == company.getId())
                 iDev.remove();
         }
-        listCompany.add(team);
+        listCompany.add(company);
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);

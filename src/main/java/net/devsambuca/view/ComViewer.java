@@ -74,6 +74,8 @@ public class ComViewer {
             System.out.println("Input name: ");
             comect.setName(reader.readLine());
             comController.create(comect);
+        } catch (NumberFormatException e) {
+            System.out.print("Invalid selection. Please try again.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,6 +90,8 @@ public class ComViewer {
             System.out.println("Input name: ");
             company.setName(reader.readLine());
             comController.update(company);
+        } catch (NumberFormatException e) {
+            System.out.print("Invalid selection. Please try again.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,6 +102,8 @@ public class ComViewer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
             comController.delete(Long.parseLong(reader.readLine()));
+        } catch (NumberFormatException e) {
+            System.out.print("Invalid selection. Please try again.");
         } catch (IOException e) {
             e.printStackTrace();
         }
