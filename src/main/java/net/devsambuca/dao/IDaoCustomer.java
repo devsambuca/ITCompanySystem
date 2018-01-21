@@ -2,16 +2,15 @@ package net.devsambuca.dao;
 
 import net.devsambuca.model.Customer;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoCustomer implements IDao<Customer> {
 
-    public static final String FILE_PATH = "customers.txt";
+    public static final String FILE_PATH = "src/main/resources/customers.txt";
 
     public void create(Customer customer) {
+        Set<Customer> customers = new HashSet<Customer>();
+        customers.add(customer);
         Writer writer = null;
         String str = customer.getId() + "," + customer.getFirstName() + "," + customer.getLastName() + "," + customer.getAdress();
         try {
@@ -48,7 +47,7 @@ public class IDaoCustomer implements IDao<Customer> {
     }
 
     public void update(Customer customer) {
-        List<Customer> dev = getAll();
+        Set<Customer> dev = getAll();
         Iterator<Customer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
@@ -72,7 +71,7 @@ public class IDaoCustomer implements IDao<Customer> {
     }
 
     public void delete(long id) {
-        List<Customer> dev = getAll();
+        Set<Customer> dev = getAll();
         Iterator<Customer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
@@ -92,8 +91,8 @@ public class IDaoCustomer implements IDao<Customer> {
         }
     }
 
-    public List<Customer> getAll() {
-        List<Customer> devList = new ArrayList<Customer>();
+    public Set<Customer> getAll() {
+        Set<Customer> devList = new HashSet<Customer>();
         try {
             // find the file with the customer date
             File devFile = new File(FILE_PATH);

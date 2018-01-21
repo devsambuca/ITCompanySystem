@@ -2,10 +2,13 @@ package net.devsambuca.view;
 
 import net.devsambuca.controller.DevController;
 import net.devsambuca.model.Developer;
+import net.devsambuca.model.Skill;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.util.Set;
 
 public class DevViewer {
     boolean exit;
@@ -47,8 +50,8 @@ public class DevViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID developer: ");
-                devController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                System.out.println(devController.read(Long.parseLong(reader.readLine())));
+
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
@@ -93,7 +96,6 @@ public class DevViewer {
             developer.setSpecialty(reader.readLine());
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
-//            developer.setSkills(reader.readLine());
             devController.update(developer);
         } catch (IOException e) {
             e.printStackTrace();

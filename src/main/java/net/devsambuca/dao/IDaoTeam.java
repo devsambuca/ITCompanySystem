@@ -2,16 +2,15 @@ package net.devsambuca.dao;
 
 import net.devsambuca.model.Team;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoTeam implements IDao<Team> {
 
-    public static final String FILE_PATH = "teams.txt";
+    public static final String FILE_PATH = "src/main/resources/teams.txt";
 
     public void create(Team team) {
+        Set<Team> teams = new HashSet<Team>();
+        teams.add(team);
         Writer writer = null;
         String str = team.getId() + "," + team.getName();
         try {
@@ -46,7 +45,7 @@ public class IDaoTeam implements IDao<Team> {
     }
 
     public void update(Team team) {
-        List<Team> listTeam = getAll();
+        Set<Team> listTeam = getAll();
         Iterator<Team> iDev = listTeam.iterator();
         while (iDev.hasNext()) {
             Team s = iDev.next();
@@ -70,7 +69,7 @@ public class IDaoTeam implements IDao<Team> {
     }
 
     public void delete(long id) {
-        List<Team> listTeam = getAll();
+        Set<Team> listTeam = getAll();
         Iterator<Team> iDev = listTeam.iterator();
         while (iDev.hasNext()) {
             Team s = iDev.next();
@@ -90,8 +89,8 @@ public class IDaoTeam implements IDao<Team> {
         }
     }
 
-    public List<Team> getAll() {
-        List<Team> listTeamList = new ArrayList<Team>();
+    public Set<Team> getAll() {
+        Set<Team> listTeamList = new HashSet<Team>();
         try {
             // find the file with the team date
             File listTeamFile = new File(FILE_PATH);

@@ -1,16 +1,17 @@
 package net.devsambuca.dao;
 
 import net.devsambuca.model.Company;
+import net.devsambuca.model.Project;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoCompany implements IDao<Company> {
-    public static final String FILE_PATH = "company.txt";
+    public static final String FILE_PATH = "src/main/resources/company.txt";
 
     public void create(Company company) {
+        Set<Company> companies = new HashSet<Company>();
+        companies.add(company);
         Writer writer = null;
         String str = company.getId() + "," + company.getName();
         try {
@@ -44,15 +45,15 @@ public class IDaoCompany implements IDao<Company> {
         return null;
     }
 
-    public void update(Company team) {
-        List<Company> listCompany = getAll();
+    public void update(Company company) {
+        Set<Company> listCompany = getAll();
         Iterator<Company> iDev = listCompany.iterator();
         while (iDev.hasNext()) {
             Company s = iDev.next();
-            if (s.getId() == team.getId())
+            if (s.getId() == company.getId())
                 iDev.remove();
         }
-        listCompany.add(team);
+        listCompany.add(company);
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);
@@ -69,7 +70,7 @@ public class IDaoCompany implements IDao<Company> {
     }
 
     public void delete(long id) {
-        List<Company> listCompany = getAll();
+        Set<Company> listCompany = getAll();
         Iterator<Company> iCom = listCompany.iterator();
         while (iCom.hasNext()) {
             Company s = iCom.next();
@@ -89,8 +90,8 @@ public class IDaoCompany implements IDao<Company> {
         }
     }
 
-    public List<Company> getAll() {
-        List<Company> listCompanyList = new ArrayList<Company>();
+    public Set<Company> getAll() {
+        Set<Company> listCompanyList = new HashSet<Company>();
         try {
             // find the file with the team date
             File listCompanyFile = new File(FILE_PATH);
@@ -108,5 +109,9 @@ public class IDaoCompany implements IDao<Company> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void create(){
+
     }
 }

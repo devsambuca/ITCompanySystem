@@ -1,2 +1,0 @@
-1,Vasya,Petrov,PHP Developer,50000.0
-

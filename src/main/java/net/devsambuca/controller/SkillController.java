@@ -3,7 +3,9 @@ package net.devsambuca.controller;
 import net.devsambuca.dao.IDao;
 import net.devsambuca.dao.IDaoSkill;
 import net.devsambuca.model.Skill;
-import java.util.List;
+
+import java.util.Set;
+
 
 public class SkillController implements IDao<Skill> {
 
@@ -25,7 +27,7 @@ public class SkillController implements IDao<Skill> {
         this.iDaoSkill.delete(id);
     }
 
-    public List<Skill> getAll() {
-        return this.iDaoSkill.getAll();
+    public Set<Skill> skills() {
+        return this.iDaoSkill.allSkills();
     }
 }

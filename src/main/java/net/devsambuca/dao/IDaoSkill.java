@@ -1,17 +1,17 @@
 package net.devsambuca.dao;
 
 import net.devsambuca.model.Skill;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class IDaoSkill implements IDao<Skill> {
 
-    public static final String FILE_PATH = "skills.txt";
+    private static final String FILE_PATH = "src/main/resources/skills.txt";
 
     public void create(Skill skill) {
+        Set<Skill> skills = new HashSet<Skill>();
+        skills.add(skill);
         Writer writer = null;
         String str = skill.getId() + "," + skill.getName();
         try {
@@ -27,15 +27,14 @@ public class IDaoSkill implements IDao<Skill> {
     public Skill read(long id) {
         try {
             // find the file with the skill date
-            File devFile = new File(FILE_PATH);
-            Scanner devScanner = new Scanner(devFile);
-            while (devScanner.hasNext()) {
+            File skillFile = new File(FILE_PATH);
+            Scanner skScanner = new Scanner(skillFile);
+            while (skScanner.hasNext()) {
                 Skill skill = new Skill();
-                String nextLine = devScanner.nextLine();
-                String[] devData = nextLine.split(",");
-                skill.setId((Long.parseLong(devData[0])));
-                skill.setName(devData[1]);
-                
+                String nextLine = skScanner.nextLine();
+                String[] skillData = nextLine.split(",");
+                skill.setId((Long.parseLong(skillData[0])));
+                skill.setName(skillData[1]);
                 if (id == skill.getId()) {
                     return skill;
                 }
@@ -48,18 +47,18 @@ public class IDaoSkill implements IDao<Skill> {
 
 
     public void update(Skill skill) {
-        List<Skill> dev = getAll();
-        Iterator<Skill> iDev = dev.iterator();
+        Set<Skill> sk = allSkills();
+        Iterator<Skill> iDev = sk.iterator();
         while (iDev.hasNext()) {
             Skill s = iDev.next();
             if (s.getId() == skill.getId())
                 iDev.remove();
         }
-        dev.add(skill);
+        sk.add(skill);
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);
-            for (Skill line : dev) {
+            for (Skill line : sk) {
                 writer.write(String.valueOf(line));
                 writer.write(System.getProperty("line.separator"));
             }
@@ -72,18 +71,18 @@ public class IDaoSkill implements IDao<Skill> {
     }
 
     public void delete(long id) {
-        List<Skill> dev = getAll();
-        Iterator<Skill> iDev = dev.iterator();
-        while (iDev.hasNext()) {
-            Skill s = iDev.next();
+        Set<Skill> skill = allSkills();
+        Iterator<Skill> iSkill = skill.iterator();
+        while (iSkill.hasNext()) {
+            Skill s = iSkill.next();
             if (s.getId() == id)
-                iDev.remove();
+                iSkill.remove();
         }
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);
-            for (Skill d : dev) {
-                writer.write(String.valueOf(d));
+            for (Skill s : skill) {
+                writer.write(String.valueOf(s));
                 writer.write(System.getProperty("line.separator"));
             }
             writer.flush();
@@ -92,24 +91,26 @@ public class IDaoSkill implements IDao<Skill> {
         }
     }
 
-    public List<Skill> getAll() {
-        List<Skill> devList = new ArrayList<Skill>();
+    public Set<Skill> allSkills() {
+        Set<Skill> skills = new HashSet<Skill>();
         try {
             // find the file with the skill date
-            File devFile = new File(FILE_PATH);
-            Scanner devScanner = new Scanner(devFile);
-            while (devScanner.hasNext()) {
+            File skillFile = new File(FILE_PATH);
+            Scanner skScanner = new Scanner(skillFile);
+            while (skScanner.hasNext()) {
                 Skill skill = new Skill();
-                String nextLine = devScanner.nextLine();
-                String[] devData = nextLine.split(",");
-                skill.setId((Long.parseLong(devData[0])));
-                skill.setName(devData[1]);
-                devList.add(skill);
+                String nextLine = skScanner.nextLine();
+                String[] skData = nextLine.split(",");
+                skill.setId((Long.parseLong(skData[0])));
+                skill.setName(skData[1]);
+                skills.add(skill);
             }
-            return devList;
+            return skills;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
+
+
 }
