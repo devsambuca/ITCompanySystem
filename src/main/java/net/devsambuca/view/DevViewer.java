@@ -66,6 +66,7 @@ public class DevViewer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
             Developer developer = new Developer();
+            Skill skill = new Skill();
             developer.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input firstname: ");
             developer.setFirstName(reader.readLine());
@@ -75,7 +76,8 @@ public class DevViewer {
             developer.setSpecialty(reader.readLine());
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
-//            developer.setSkills();
+            System.out.println("Input skill");
+            skill.setName(reader.readLine());
             devController.create(developer);
         } catch (IOException e) {
             e.printStackTrace();

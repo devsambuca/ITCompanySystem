@@ -1,5 +1,3 @@
-1,Vasya,Petrov,PHP Developer,50000.0
-2,Vasya,Petrov,PHP Developer,50000.0
-3,Vasya,Petrov,PHP Developer,50000.0
-2,Kostya,Gdonov,JS Developer,100000.0
-1,1,1,1,1.0
+1,Vasya,Petrov,PHP Developer,{1,2,3},50000.0
+2,Vasya,Petrov,PHP Developer,{1,2,3},50000.0
+3,Vasya,Petrov,PHP Developer,{1,2,3},50000.0

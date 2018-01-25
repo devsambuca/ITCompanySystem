@@ -9,7 +9,7 @@ import net.devsambuca.model.Skill;
 import java.util.List;
 import java.util.Set;
 
-public class DevController implements IDao<Developer> {
+public class DevController implements IDao<Developer>, IService<Skill> {
 
     private IDaoDeveloper developerDAO = new IDaoDeveloper();
     private IDaoSkill iDaoSkill = new IDaoSkill();
@@ -30,7 +30,11 @@ public class DevController implements IDao<Developer> {
         this.developerDAO.delete(id);
     }
 
-    public Set<Skill> skills() {
-      return this.iDaoSkill.allSkills();
+    public void add(Skill skill) {
+        this.iDaoSkill.create(skill);
+    }
+
+    public void remove(long id) {
+        this.iDaoSkill.delete(id);
     }
 }
