@@ -1,4 +1,0 @@
-1,Vasya,Petrov,PHP Developer,50000.0
-2,Vasya,Petrov,PHP Developer,50000.0
-3,Vasya,Petrov,PHP Developer,50000.0
-2,Kostya,Gdonov,JS Developer,100000.0

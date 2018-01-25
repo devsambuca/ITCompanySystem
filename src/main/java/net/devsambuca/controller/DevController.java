@@ -12,7 +12,6 @@ import java.util.Set;
 public class DevController implements IDao<Developer> {
 
     private IDaoDeveloper developerDAO = new IDaoDeveloper();
-    private IDaoSkill iDaoSkill = new IDaoSkill();
 
     public void create(Developer developer) {
         this.developerDAO.create(developer);
@@ -30,7 +29,5 @@ public class DevController implements IDao<Developer> {
         this.developerDAO.delete(id);
     }
 
-    public Set<Skill> skills() {
-      return this.iDaoSkill.allSkills();
-    }
-}
+   }
+

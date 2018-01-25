@@ -13,7 +13,7 @@ public class IDaoSkill implements IDao<Skill> {
         Set<Skill> skills = new HashSet<Skill>();
         skills.add(skill);
         Writer writer = null;
-        String str = skill.getId() + "," + skill.getName();
+        String str = skill.getId() + ", " + skill.getName();
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');
