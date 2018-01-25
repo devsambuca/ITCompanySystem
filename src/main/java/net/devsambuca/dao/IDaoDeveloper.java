@@ -28,17 +28,19 @@ public class IDaoDeveloper implements IDao<Developer> {
         }
     }
 
-
     public Developer read(long id) {
         try {
             // find the file with the developer date
+            String pattern = "(^\\d)[\\,](\\w+)[\\,](\\w+)[\\,](\\w+[\\s]\\w+)[\\,][\\{]([0-9,]+)}[\\,](\\w+\\.\\w)";
             ArrayList<Developer> list = new ArrayList<>();
             Developer developer = new Developer();
+            Set<Skill> skills = new HashSet<>();
+            Skill skill = new Skill();
             File devFile = new File(FILE_PATH);
             Scanner devScanner = new Scanner(devFile);
             while (devScanner.hasNext()) {
                 String nextLine = devScanner.nextLine();
-                Pattern pt1 = Pattern.compile("(^\\d)[\\,](\\w+)[\\,](\\w+)[\\,](\\w+[\\s]\\w+)[\\,][\\{]([0-9,]+)}[\\,](\\w+\\.\\w)");
+                Pattern pt1 = Pattern.compile(pattern);
                 Matcher m1 = pt1.matcher(nextLine);
                 if (m1.find())
                     developer.setId((Long.parseLong(m1.group(1))));
@@ -46,12 +48,10 @@ public class IDaoDeveloper implements IDao<Developer> {
                 developer.setLastName(m1.group(3));
                 developer.setSpecialty(m1.group(4));
 
-                Skill skill = new Skill();
-            Set<Skill>skills = new HashSet<>();
-            String[] ar = m1.group(5).split(",");
+                String[] ar = m1.group(5).split(",");
 
-                for(int i = 0; i < ar.length; i++)
-                    if(Long.valueOf(ar[i]) == skill.getId()) {
+                for (int i = 0; i < ar.length; i++)
+                    if (Long.valueOf(ar[i]) == skill.getId()) {
 
                         skill.setId(Long.parseLong(ar[i]));
                         skill.setName(skill.getName());
