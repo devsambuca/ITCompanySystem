@@ -4,6 +4,7 @@ import net.devsambuca.dao.IDao;
 import net.devsambuca.dao.IDaoDeveloper;
 import net.devsambuca.model.Developer;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class DevController implements IDao<Developer> {
 
@@ -23,5 +24,9 @@ public class DevController implements IDao<Developer> {
 
     public void delete(long id) {
         this.developerDAO.delete(id);
+    }
+
+    public List<Developer> getAll() {
+        return this.developerDAO.getAll();
     }
 }

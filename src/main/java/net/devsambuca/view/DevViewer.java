@@ -3,23 +3,25 @@ package net.devsambuca.view;
 import net.devsambuca.controller.DevController;
 import net.devsambuca.controller.SkillController;
 import net.devsambuca.model.Developer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class DevViewer {
     boolean exit;
     DevController devController = new DevController();
     ViewEntity viewEntity = new ViewEntity();
-    SkillController skillController =   new SkillController();
+    //  SkillController skillController =   new SkillController();
 
     public void run() {
-       while (!exit) {
+        while (!exit) {
             viewEntity.showMenu();
             int choice = viewEntity.getInputOperation();
             performAction(choice);
-       }
+        }
     }
 
     public void performAction(int choice) {
@@ -39,6 +41,9 @@ public class DevViewer {
                 break;
             case 4:
                 delete();
+                break;
+            case 5:
+                showAllDeveloper();
                 break;
             default:
                 System.out.println("An unknown error has occured.");
@@ -102,7 +107,7 @@ public class DevViewer {
         }
     }
 
-    private void delete(){
+    private void delete() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID developer: ");
@@ -111,6 +116,12 @@ public class DevViewer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAllDeveloper() {
+        List<Developer> developers = devController.getAll();
+        for (Developer dev : developers)
+            System.out.println(dev);
     }
 }
 
