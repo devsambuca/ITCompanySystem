@@ -75,7 +75,8 @@ public class DevViewer {
             developer.setSpecialty(reader.readLine());
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
-//            developer.setSkills();
+            System.out.println("Input skill");
+            developer.setSkills(skillController.skills());
             devController.create(developer);
         } catch (IOException e) {
             e.printStackTrace();

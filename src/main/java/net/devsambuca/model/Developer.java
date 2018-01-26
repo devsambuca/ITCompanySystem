@@ -61,10 +61,6 @@ public class Developer {
         this.skills = skills;
     }
 
-    public void addSkill(Skill skill) {// связь ключей для таблиц в базе
-        skill.setName(skill.getName());
-        skills.add(skill);
-    }
     @Override
     public String toString() {
         return  id +

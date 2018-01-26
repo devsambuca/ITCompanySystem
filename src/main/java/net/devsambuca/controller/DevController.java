@@ -6,6 +6,7 @@ import net.devsambuca.dao.IDaoSkill;
 import net.devsambuca.model.Developer;
 import net.devsambuca.model.Skill;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Set;
 
@@ -17,8 +18,8 @@ public class DevController implements IDao<Developer> {
         this.developerDAO.create(developer);
     }
 
-    public Developer read(long id) {
-          return this.developerDAO.read(id);
+    public Developer read(long id) throws FileNotFoundException {
+        return this.developerDAO.read(id);
     }
 
     public void update(Developer developer) {
@@ -29,5 +30,4 @@ public class DevController implements IDao<Developer> {
         this.developerDAO.delete(id);
     }
 
-   }
-
+}
