@@ -1,10 +1,12 @@
 package net.devsambuca.view;
 
 import net.devsambuca.controller.SkillController;
+import net.devsambuca.model.Developer;
 import net.devsambuca.model.Skill;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class SkillViewer {
 
@@ -37,6 +39,12 @@ public class SkillViewer {
                 break;
             case 4:
                 delete();
+                break;
+            case 5:
+                showAllSkills();
+                break;
+                case 6:
+                    returnMainMenu();
                 break;
             default:
                 System.out.println("An unknown error has occured.");
@@ -93,6 +101,20 @@ public class SkillViewer {
             System.out.println("Input ID skill: ");
             skillController.delete(Long.parseLong(reader.readLine()));
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAllSkills() {
+        List<Skill> skills = skillController.getAll();
+        for (Skill skill : skills)
+            System.out.println(skill);
+    }
+
+    private void returnMainMenu() {
+        try {
+            viewEntity.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

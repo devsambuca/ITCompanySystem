@@ -1,7 +1,7 @@
-1,Java
-2,PHP
-3,Scala
-4,Ruby
-5,Python
-6,CSS
-
+1,Scala
+2,Ruby
+3,Python
+4,CSS
+5,Java
+6,C++
+7,JavaScript

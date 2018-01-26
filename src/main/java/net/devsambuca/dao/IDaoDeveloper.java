@@ -54,8 +54,8 @@ public class IDaoDeveloper implements IDao<Developer> {
                     else {
                         Set<Skill> skills = developer.getSkills();
                         if (skills == null) skills = new HashSet<>();
-                        IDaoSkill iDaoSkill = new IDaoSkill();
-                        skills.add(iDaoSkill.read((Long.valueOf(devData[i]))));
+                        DaoSkill daoSkill = new DaoSkill();
+                        skills.add(daoSkill.read((Long.valueOf(devData[i]))));
                         developer.setSkills(skills);
                     }
                 }
@@ -145,8 +145,8 @@ public class IDaoDeveloper implements IDao<Developer> {
                     else {
                         Set<Skill> skills = developer.getSkills();
                         if (skills == null) skills = new HashSet<>();
-                        IDaoSkill iDaoSkill = new IDaoSkill();
-                        skills.add(iDaoSkill.read((Long.valueOf(devData[i]))));
+                        DaoSkill daoSkill = new DaoSkill();
+                        skills.add(daoSkill.read((Long.valueOf(devData[i]))));
                         developer.setSkills(skills);
                     }
                 }

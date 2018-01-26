@@ -68,12 +68,14 @@ public class ViewEntity {
     public int getInputOperation() {
         int choice = -1;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        while (choice < 0 || choice > 5) {
+        while (choice < 0 || choice > 6) {
+
             try {
                 System.out.println("\nEnter your choice: ");
                 choice = Integer.parseInt(reader.readLine());
+                if(choice == 6)break;
             } catch (NumberFormatException e) {
-                System.out.print("Entity not found. Please try again.");
+                System.out.print("The selected operation was not found. Please try again.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -89,7 +91,7 @@ public class ViewEntity {
         System.out.println("-----------------------------------------------");
     }
 
-    private void mainMenu() {
+    public void mainMenu() {
         System.out.println("\nPlease make a selection 0-6");
         System.out.println("1. Developer");
         System.out.println("2. Skill");
@@ -107,6 +109,7 @@ public class ViewEntity {
         System.out.println("3. update");
         System.out.println("4. delete");
         System.out.println("5. show all");
+        System.out.println("6. main menu");
         System.out.println("0. exit");
     }
 }

@@ -5,7 +5,7 @@ import net.devsambuca.model.Skill;
 import java.io.*;
 import java.util.*;
 
-public class IDaoSkill implements IDao<Skill> {
+public class DaoSkill implements IDao<Skill> {
 
     private static final String FILE_PATH = "src/main/resources/skills.txt";
 
@@ -22,7 +22,6 @@ public class IDaoSkill implements IDao<Skill> {
             e.printStackTrace();
         }
     }
-
 
     public Skill read(long id) {
         try {
@@ -45,33 +44,32 @@ public class IDaoSkill implements IDao<Skill> {
         return null;
     }
 
-
     public void update(Skill skill) {
-        List<Skill> sk = allSkills();
-        Iterator<Skill> iDev = sk.iterator();
+        List<Skill> skills = getAll();
+        Iterator<Skill> iDev = skills.iterator();
         while (iDev.hasNext()) {
             Skill s = iDev.next();
             if (s.getId() == skill.getId())
                 iDev.remove();
         }
-        sk.add(skill);
+        skills.add(skill);
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);
-            for (Skill line : sk) {
+            for (Skill line : skills) {
                 writer.write(String.valueOf(line));
                 writer.write(System.getProperty("line.separator"));
             }
             writer.flush();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File not found");;
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void delete(long id) {
-        List<Skill> skill = allSkills();
+        List<Skill> skill = getAll();
         Iterator<Skill> iSkill = skill.iterator();
         while (iSkill.hasNext()) {
             Skill s = iSkill.next();
@@ -91,7 +89,7 @@ public class IDaoSkill implements IDao<Skill> {
         }
     }
 
-    public List<Skill> allSkills() {
+    public List<Skill> getAll() {
         List<Skill> skills = new ArrayList<>();
         try {
             // find the file with the skill date
