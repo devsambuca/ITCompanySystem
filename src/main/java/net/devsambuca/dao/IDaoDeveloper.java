@@ -14,7 +14,7 @@ public class IDaoDeveloper implements IDao<Developer> {
     public static final String FILE_PATH = "src/main/resources/developers.txt";
 
     public void create(Developer developer) {
-        Set<Developer> developers = new HashSet<Developer>();
+        Set<Developer> developers = new HashSet<>();
         developers.add(developer);
         Writer writer = null;
         String str = developer.getId() + "," + developer.getFirstName() + "," + developer.getLastName() + "," + developer.getSpecialty() + "," + developer.getSalary();
@@ -30,64 +30,48 @@ public class IDaoDeveloper implements IDao<Developer> {
 
     public Developer read(long id) {
         try {
-            // find the file with the developer date
-            String pattern = "(^\\d)[\\,](\\w+)[\\,](\\w+)[\\,](\\w+[\\s]\\w+)[\\,][\\{]([0-9,]+)}[\\,](\\w+\\.\\w)";
-            ArrayList<Developer> list = new ArrayList<>();
-            Developer developer = new Developer();
-            Set<Skill> skills = new HashSet<>();
-            Skill skill = new Skill();
             File devFile = new File(FILE_PATH);
             Scanner devScanner = new Scanner(devFile);
+            ArrayList<Developer> developers = new ArrayList<>();
             while (devScanner.hasNext()) {
+                Developer developer = new Developer();
                 String nextLine = devScanner.nextLine();
-                Pattern pt1 = Pattern.compile(pattern);
-                Matcher m1 = pt1.matcher(nextLine);
-                if (m1.find())
-                    developer.setId((Long.parseLong(m1.group(1))));
-                developer.setFirstName(m1.group(2));
-                developer.setLastName(m1.group(3));
-                developer.setSpecialty(m1.group(4));
-
-                String[] ar = m1.group(5).split(",");
-
-                for (int i = 0; i < ar.length; i++)
-                    if (Long.valueOf(ar[i]) == skill.getId()) {
-
-                        skill.setId(Long.parseLong(ar[i]));
-                        skill.setName(skill.getName());
-                        skills.add(skill);
-                        developer.getSkills();
+                String[] devData = nextLine.split(",");
+                for (int i = 0; i < devData.length; i++) {
+                    if (devData[i].isEmpty()) continue;
+                    switch (i) {
+                        case 0:
+                            developer.setId(Long.parseLong(devData[i]));
+                            continue;
+                        case 1:
+                            developer.setFirstName(devData[i]);
+                            continue;
+                        case 2:
+                            developer.setLastName(devData[i]);
+                            continue;
+                        case 3:
+                            developer.setSpecialty(devData[i]);
+                            continue;
                     }
-                developer.setSalary(BigDecimal.valueOf(Double.parseDouble(m1.group(6))));
-                list.add(developer);
-                if (id == developer.getId()) {
-                    return developer;
+                    if (i == devData.length - 1)
+                        developer.setSalary(BigDecimal.valueOf(Double.parseDouble(devData[i])));
+                    else {
+                        Set<Skill> skills = developer.getSkills();
+                        if (skills == null) skills = new HashSet<>();
+                        IDaoSkill iDaoSkill = new IDaoSkill();
+                        skills.add(iDaoSkill.read((Long.valueOf(devData[i]))));
+                        developer.setSkills(skills);
+                    }
                 }
+                if (id == developer.getId())
+                    return developer;
             }
-
-//            Pattern pt = Pattern.compile("[\\{]([0-9,]+)}");
-//            Matcher m = pt.matcher(nextLine);
-//            Skill skill = new Skill();
-//            Set<Skill>skills = new HashSet<>();
-//            while (m.find()) {
-//                String[] ar = m.group(1).split(",");
-//
-//                for(int i = 0; i < ar.length; i++)
-//                    if(Long.valueOf(ar[i]) == skill.getId()){
-//
-//                        skill.setId(Long.parseLong(ar[i]));
-//                        skill.setName(skill.getName());
-//                        skills.add(skill);
-//                        return d;
-
-        } catch (
-                FileNotFoundException e)
-
-        {
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
         return null;
     }
+
 
 
     public void update(Developer developer) {
@@ -114,7 +98,6 @@ public class IDaoDeveloper implements IDao<Developer> {
         }
     }
 
-
     public void delete(long id) {
         List<Developer> dev = getAll();
         Iterator<Developer> iDev = dev.iterator();
@@ -136,9 +119,7 @@ public class IDaoDeveloper implements IDao<Developer> {
     }
 
     public List<Developer> getAll() {
-
         try {
-
             File devFile = new File(FILE_PATH);
             Scanner devScanner = new Scanner(devFile);
             List<Developer> devList = new ArrayList<>();

@@ -5,6 +5,17 @@ public class Skill {
     private Long id;
     private String name;
 
+    public Skill(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Skill(){}
+
+    public Skill(Skill read) {
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -23,6 +34,6 @@ public class Skill {
 
     @Override
     public String toString() {
-        return id + ", " + name;
+        return name;
     }
 }

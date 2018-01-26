@@ -47,7 +47,7 @@ public class IDaoSkill implements IDao<Skill> {
 
 
     public void update(Skill skill) {
-        Set<Skill> sk = allSkills();
+        List<Skill> sk = allSkills();
         Iterator<Skill> iDev = sk.iterator();
         while (iDev.hasNext()) {
             Skill s = iDev.next();
@@ -71,7 +71,7 @@ public class IDaoSkill implements IDao<Skill> {
     }
 
     public void delete(long id) {
-        Set<Skill> skill = allSkills();
+        List<Skill> skill = allSkills();
         Iterator<Skill> iSkill = skill.iterator();
         while (iSkill.hasNext()) {
             Skill s = iSkill.next();
@@ -91,8 +91,8 @@ public class IDaoSkill implements IDao<Skill> {
         }
     }
 
-    public Set<Skill> allSkills() {
-        Set<Skill> skills = new HashSet<Skill>();
+    public List<Skill> allSkills() {
+        List<Skill> skills = new ArrayList<>();
         try {
             // find the file with the skill date
             File skillFile = new File(FILE_PATH);
