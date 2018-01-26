@@ -1,5 +1,0 @@
-1, Java
-5, Scala
-3, Python
-4, HTML
-2, PHP
