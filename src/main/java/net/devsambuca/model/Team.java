@@ -5,7 +5,9 @@ import java.util.Set;
 public class Team {
     private Long id;
     private String name;
-    private Set<Team> teams;
+    private String developer;
+
+    private Set<Developer> developers;
 
     public Long getId() {
         return id;
@@ -23,10 +25,25 @@ public class Team {
         this.name = name;
     }
 
+    public Set<Developer> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(Set<Developer> developers) {
+        this.developers = developers;
+    }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
 
     @Override
     public String toString() {
         return id +
-                ", " + name + ", " + teams;
+                ", " + name + ", " + developers;
     }
 }

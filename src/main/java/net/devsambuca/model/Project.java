@@ -7,6 +7,7 @@ public class Project {
     private Long id;
     private String name;
     private Set<Team> teams;
+    private String team;
 
     public Project() {
 
@@ -26,6 +27,22 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     @Override

@@ -1,12 +1,13 @@
 package net.devsambuca.controller;
 
 import net.devsambuca.dao.IDao;
-import net.devsambuca.dao.IDaoTeam;
+import net.devsambuca.dao.DaoTeam;
 import net.devsambuca.model.Team;
+import java.util.List;
 
 public class TeamController implements IDao<Team> {
 
-        private IDaoTeam teamDAO = new IDaoTeam();
+        private DaoTeam teamDAO = new DaoTeam();
 
         public void create(Team team) {
             this.teamDAO.create(team);
@@ -24,4 +25,8 @@ public class TeamController implements IDao<Team> {
         public void delete(long id) {
             this.teamDAO.delete(id);
         }
+
+    public List<Team> getAll() {
+        return this.teamDAO.getAll();
+    }
 }

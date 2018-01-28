@@ -6,14 +6,14 @@ import net.devsambuca.model.Project;
 import java.io.*;
 import java.util.*;
 
-public class IDaoCompany implements IDao<Company> {
+public class DaoCompany implements IDao<Company> {
     public static final String FILE_PATH = "src/main/resources/company.txt";
 
     public void create(Company company) {
-        Set<Company> companies = new HashSet<Company>();
+        List<Company> companies = new ArrayList<>();
         companies.add(company);
         Writer writer = null;
-        String str = company.getId() + "," + company.getName();
+        String str = company.getId() + "," + company.getName() + "," + company.getProject();
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');
@@ -46,7 +46,7 @@ public class IDaoCompany implements IDao<Company> {
     }
 
     public void update(Company company) {
-        Set<Company> listCompany = getAll();
+        List<Company> listCompany = getAll();
         Iterator<Company> iDev = listCompany.iterator();
         while (iDev.hasNext()) {
             Company s = iDev.next();
@@ -70,7 +70,7 @@ public class IDaoCompany implements IDao<Company> {
     }
 
     public void delete(long id) {
-        Set<Company> listCompany = getAll();
+        List<Company> listCompany = getAll();
         Iterator<Company> iCom = listCompany.iterator();
         while (iCom.hasNext()) {
             Company s = iCom.next();
@@ -90,8 +90,8 @@ public class IDaoCompany implements IDao<Company> {
         }
     }
 
-    public Set<Company> getAll() {
-        Set<Company> listCompanyList = new HashSet<Company>();
+    public List<Company> getAll() {
+        List<Company> listCompanyList = new ArrayList<>();
         try {
             // find the file with the team date
             File listCompanyFile = new File(FILE_PATH);

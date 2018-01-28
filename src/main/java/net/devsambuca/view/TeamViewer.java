@@ -2,9 +2,11 @@ package net.devsambuca.view;
 
 import net.devsambuca.controller.TeamController;
 import net.devsambuca.model.Team;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class TeamViewer {
     boolean exit;
@@ -38,6 +40,12 @@ public class TeamViewer {
             case 4:
                 delete();
                 break;
+            case 5:
+                showAllTeam();
+                break;
+            case 6:
+                returnMainMenu();
+                break;
             default:
                 System.out.println("An unknown error has occured.");
         }
@@ -67,6 +75,8 @@ public class TeamViewer {
             team.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
             team.setName(reader.readLine());
+            System.out.println("Input developer: ");
+            team.setDeveloper(reader.readLine().toString());
             teamController.create(team);
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,6 +91,8 @@ public class TeamViewer {
             team.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
             team.setName(reader.readLine());
+            System.out.println("Input developer: ");
+            team.setDeveloper(reader.readLine().toString());
             teamController.update(team);
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,6 +105,20 @@ public class TeamViewer {
             System.out.println("Input ID team: ");
             teamController.delete(Long.parseLong(reader.readLine()));
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAllTeam() {
+        List<Team> teams = teamController.getAll();
+        for (Team team : teams)
+            System.out.println(team);
+    }
+
+    private void returnMainMenu() {
+        try {
+            viewEntity.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

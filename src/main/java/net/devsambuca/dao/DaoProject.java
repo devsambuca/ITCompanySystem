@@ -5,14 +5,14 @@ import net.devsambuca.model.Project;
 import java.io.*;
 import java.util.*;
 
-public class IDaoProject implements IDao<Project> {
+public class DaoProject implements IDao<Project> {
     public static final String FILE_PATH = "src/main/resources/project.txt";
 
     public void create(Project project) {
-        Set<Project> projects = new HashSet<Project>();
+        List<Project> projects = new ArrayList<>();
         projects.add(project);
         Writer writer = null;
-        String str = project.getId() + "," + project.getName();
+        String str = project.getId() + "," + project.getName() + "," + project.getTeam();
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');
@@ -45,7 +45,7 @@ public class IDaoProject implements IDao<Project> {
     }
 
     public void update(Project team) {
-        Set<Project> listProject = getAll();
+        List<Project> listProject = getAll();
         Iterator<Project> iDev = listProject.iterator();
         while (iDev.hasNext()) {
             Project s = iDev.next();
@@ -69,7 +69,7 @@ public class IDaoProject implements IDao<Project> {
     }
 
     public void delete(long id) {
-        Set<Project> listProject = getAll();
+        List<Project> listProject = getAll();
         Iterator<Project> iDev = listProject.iterator();
         while (iDev.hasNext()) {
             Project s = iDev.next();
@@ -89,8 +89,8 @@ public class IDaoProject implements IDao<Project> {
         }
     }
 
-    public Set<Project> getAll() {
-        Set<Project> listProjectList = new HashSet<Project>();
+    public List<Project> getAll() {
+        List<Project> listProjectList = new ArrayList<>();
         try {
             // find the file with the team date
             File listProjectFile = new File(FILE_PATH);

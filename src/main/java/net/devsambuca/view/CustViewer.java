@@ -6,10 +6,11 @@ import net.devsambuca.model.Customer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class CustViewer {
     boolean exit;
-    CustController projController = new CustController();
+    CustController custController = new CustController();
     ViewEntity viewEntity = new ViewEntity();
 
     public void run() {
@@ -38,6 +39,12 @@ public class CustViewer {
             case 4:
                 delete();
                 break;
+            case 5:
+                showAllCustomers();
+                break;
+            case 6:
+                returnMainMenu();
+                break;
             default:
                 System.out.println("An unknown error has occured.");
         }
@@ -48,7 +55,7 @@ public class CustViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                projController.read(Long.parseLong(reader.readLine()));
+                custController.read(Long.parseLong(reader.readLine()));
                 System.out.println(reader);
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
@@ -71,7 +78,9 @@ public class CustViewer {
             customer.setLastName(reader.readLine());
             System.out.println("Input address: ");
             customer.setAdress(reader.readLine());
-            projController.create(customer);
+            System.out.println("Input address: ");
+            customer.setProject(reader.readLine().toString());
+            custController.create(customer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,7 +98,9 @@ public class CustViewer {
             customer.setLastName(reader.readLine());
             System.out.println("Input address: ");
             customer.setAdress(reader.readLine());
-            projController.update(customer);
+            System.out.println("Input project: ");
+            customer.setProject(reader.readLine().toString());
+            custController.update(customer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,7 +110,21 @@ public class CustViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            projController.delete(Long.parseLong(reader.readLine()));
+            custController.delete(Long.parseLong(reader.readLine()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAllCustomers() {
+        List<Customer> customers = custController.getAll();
+        for(Customer customer : customers)
+            System.out.println(customer);
+    }
+
+    private void returnMainMenu() {
+        try {
+            viewEntity.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

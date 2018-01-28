@@ -7,7 +7,8 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String adress;
-    private Set project;
+    private Set projects;
+    private String project;
 
     public Customer() {
     }
@@ -44,12 +45,28 @@ public class Customer {
         this.adress = adress;
     }
 
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public Set getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return id +
-                ", " + firstName + '\'' +
-                ", " + lastName + '\'' +
-                ", " + adress + '\'' +
-                ", " + project;
+                ", " + firstName +
+                ", " + lastName +
+                ", " + adress +
+                ", " + projects;
     }
 }

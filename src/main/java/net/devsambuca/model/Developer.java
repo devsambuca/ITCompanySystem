@@ -12,6 +12,7 @@ public class Developer {
     private String specialty;
     private Set<Skill> skills;
     private BigDecimal salary;
+    private String skill;
 
     public BigDecimal getSalary() {
         return salary;
@@ -51,6 +52,15 @@ public class Developer {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+
+    public void setSkill(String skill) {
+        this.skill = skill;
     }
 
     public Set<Skill> getSkills() {

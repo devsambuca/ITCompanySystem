@@ -4,12 +4,12 @@ import net.devsambuca.model.Team;
 import java.io.*;
 import java.util.*;
 
-public class IDaoTeam implements IDao<Team> {
+public class DaoTeam implements IDao<Team> {
 
     public static final String FILE_PATH = "src/main/resources/teams.txt";
 
     public void create(Team team) {
-        Set<Team> teams = new HashSet<Team>();
+        List<Team> teams = new ArrayList<>();
         teams.add(team);
         Writer writer = null;
         String str = team.getId() + "," + team.getName();
@@ -45,7 +45,7 @@ public class IDaoTeam implements IDao<Team> {
     }
 
     public void update(Team team) {
-        Set<Team> listTeam = getAll();
+        List<Team> listTeam = getAll();
         Iterator<Team> iDev = listTeam.iterator();
         while (iDev.hasNext()) {
             Team s = iDev.next();
@@ -69,7 +69,7 @@ public class IDaoTeam implements IDao<Team> {
     }
 
     public void delete(long id) {
-        Set<Team> listTeam = getAll();
+        List<Team> listTeam = getAll();
         Iterator<Team> iDev = listTeam.iterator();
         while (iDev.hasNext()) {
             Team s = iDev.next();
@@ -89,8 +89,8 @@ public class IDaoTeam implements IDao<Team> {
         }
     }
 
-    public Set<Team> getAll() {
-        Set<Team> listTeamList = new HashSet<Team>();
+    public List<Team> getAll() {
+        List<Team> listTeamList = new ArrayList<>();
         try {
             // find the file with the team date
             File listTeamFile = new File(FILE_PATH);

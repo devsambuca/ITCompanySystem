@@ -5,6 +5,7 @@ import net.devsambuca.model.Project;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class ProjViewer {
     boolean exit;
@@ -37,6 +38,13 @@ public class ProjViewer {
             case 4:
                 delete();
                 break;
+            case 5:
+                showAllProjects();
+                break;
+            case 6:
+                returnMainMenu();
+                break;
+
             default:
                 System.out.println("An unknown error has occured.");
         }
@@ -66,6 +74,8 @@ public class ProjViewer {
             project.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
             project.setName(reader.readLine());
+            System.out.println("Input team: ");
+            project.setTeam(reader.readLine().toString());
             projController.create(project);
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,6 +90,8 @@ public class ProjViewer {
             project.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
             project.setName(reader.readLine());
+            System.out.println("Input team: ");
+            project.setTeam(reader.readLine().toString());
             projController.update(project);
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,6 +103,20 @@ public class ProjViewer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
             projController.delete(Long.parseLong(reader.readLine()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAllProjects(){
+        List<Project> projects = projController.getAll();
+        for(Project project : projects)
+            System.out.println(project);
+    }
+
+    private void returnMainMenu() {
+        try {
+            viewEntity.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

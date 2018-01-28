@@ -9,6 +9,7 @@ import net.devsambuca.model.Skill;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Set;
 
 public class ComViewer {
@@ -42,8 +43,12 @@ public class ComViewer {
             case 4:
                 delete();
                 break;
-//            case 5:
-//                addSkill();
+            case 5:
+                showAllCompanies();
+                break;
+            case 6:
+                returnMainMenu();
+                break;
             default:
                 System.out.println("An unknown error has occured.");
         }
@@ -69,11 +74,14 @@ public class ComViewer {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
-            Company comect = new Company();
-            comect.setId(Long.parseLong(reader.readLine()));
+            Company company = new Company();
+            company.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
-            comect.setName(reader.readLine());
-            comController.create(comect);
+            company.setName(reader.readLine());
+            System.out.println("Input project: ");
+            company.setProject(reader.readLine().toString());
+
+            comController.create(company);
         } catch (NumberFormatException e) {
             System.out.print("Invalid selection. Please try again.");
         } catch (IOException e) {
@@ -89,6 +97,8 @@ public class ComViewer {
             company.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input name: ");
             company.setName(reader.readLine());
+            System.out.println("Input project: ");
+            company.setProject(reader.readLine().toString());
             comController.update(company);
         } catch (NumberFormatException e) {
             System.out.print("Invalid selection. Please try again.");
@@ -109,10 +119,19 @@ public class ComViewer {
         }
     }
 
-//    private Set<Project> addSkill () {
-//        System.out.println("Выберите проекты");
-//        ProjController projController = new ProjController();
-//        projController.create(S);
-//    }
+    private void showAllCompanies(){
+        List<Company> companies = comController.getAll();
+        for(Company company : companies) {
+            System.out.println(company);
+        }
+    }
+
+    private void returnMainMenu() {
+        try {
+            viewEntity.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

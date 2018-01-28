@@ -3,18 +3,20 @@ package net.devsambuca.view;
 import net.devsambuca.controller.DevController;
 import net.devsambuca.controller.SkillController;
 import net.devsambuca.model.Developer;
+import net.devsambuca.model.Skill;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 
 public class DevViewer {
     boolean exit;
     DevController devController = new DevController();
     ViewEntity viewEntity = new ViewEntity();
-    //  SkillController skillController =   new SkillController();
+    //SkillController skillController =   new SkillController();
 
     public void run() {
         while (!exit) {
@@ -71,6 +73,7 @@ public class DevViewer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
             Developer developer = new Developer();
+            Skill skill =   new Skill();
             developer.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input firstname: ");
             developer.setFirstName(reader.readLine());
@@ -81,6 +84,7 @@ public class DevViewer {
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
             System.out.println("Input skill");
+            developer.setSkill(reader.readLine().toString());
             devController.create(developer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,6 +105,8 @@ public class DevViewer {
             developer.setSpecialty(reader.readLine());
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
+            System.out.println("Input skill");
+            developer.setSkill(reader.readLine().toString());
             devController.update(developer);
         } catch (IOException e) {
             e.printStackTrace();

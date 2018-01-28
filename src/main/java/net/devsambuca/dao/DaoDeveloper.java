@@ -7,7 +7,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class IDaoDeveloper implements IDao<Developer> {
+public class DaoDeveloper implements IDao<Developer> {
 
     public static final String FILE_PATH = "src/main/resources/developers.txt";
 
@@ -15,7 +15,7 @@ public class IDaoDeveloper implements IDao<Developer> {
         List<Developer> developers = new ArrayList<>();
         developers.add(developer);
         Writer writer = null;
-        String str = developer.getId() + "," + developer.getFirstName() + "," + developer.getLastName() + "," + developer.getSpecialty() + "," + developer.getSkills() + "," + developer.getSalary();
+        String str = developer.getId() + "," + developer.getFirstName() + "," + developer.getLastName() + "," + developer.getSpecialty() + "," + developer.getSkill() + "," + developer.getSalary();
         try {
             writer = new FileWriter(FILE_PATH, true);
             writer.write(str + '\n');

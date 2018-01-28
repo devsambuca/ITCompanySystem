@@ -1,27 +1,33 @@
 package net.devsambuca.controller;
 
 import net.devsambuca.dao.IDao;
-import net.devsambuca.dao.IDaoProject;
+import net.devsambuca.dao.DaoProject;
 import net.devsambuca.model.Project;
+
+import java.util.List;
 
 public class ProjController implements IDao<Project> {
 
-        private IDaoProject projectDAO = new IDaoProject();
+    private DaoProject projectDAO = new DaoProject();
 
-        public void create(Project project) {
-            this.projectDAO.create(project);
-        }
+    public void create(Project project) {
+        this.projectDAO.create(project);
+    }
 
-        public Project read(long id) {
-            this.projectDAO.read(id);
-            return null;
-        }
+    public Project read(long id) {
+        this.projectDAO.read(id);
+        return null;
+    }
 
-        public void update(Project project) {
-            this.projectDAO.update(project);
-        }
+    public void update(Project project) {
+        this.projectDAO.update(project);
+    }
 
-        public void delete(long id) {
-            this.projectDAO.delete(id);
-        }
+    public void delete(long id) {
+        this.projectDAO.delete(id);
+    }
+
+    public List<Project> getAll() {
+        return this.projectDAO.getAll();
+    }
 }

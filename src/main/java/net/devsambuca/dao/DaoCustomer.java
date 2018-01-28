@@ -4,12 +4,12 @@ import net.devsambuca.model.Customer;
 import java.io.*;
 import java.util.*;
 
-public class IDaoCustomer implements IDao<Customer> {
+public class DaoCustomer implements IDao<Customer> {
 
     public static final String FILE_PATH = "src/main/resources/customers.txt";
 
     public void create(Customer customer) {
-        Set<Customer> customers = new HashSet<Customer>();
+        List<Customer> customers = new ArrayList<>();
         customers.add(customer);
         Writer writer = null;
         String str = customer.getId() + "," + customer.getFirstName() + "," + customer.getLastName() + "," + customer.getAdress();
@@ -47,7 +47,7 @@ public class IDaoCustomer implements IDao<Customer> {
     }
 
     public void update(Customer customer) {
-        Set<Customer> dev = getAll();
+        List<Customer> dev = getAll();
         Iterator<Customer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
@@ -71,7 +71,7 @@ public class IDaoCustomer implements IDao<Customer> {
     }
 
     public void delete(long id) {
-        Set<Customer> dev = getAll();
+        List<Customer> dev = getAll();
         Iterator<Customer> iDev = dev.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
@@ -91,8 +91,8 @@ public class IDaoCustomer implements IDao<Customer> {
         }
     }
 
-    public Set<Customer> getAll() {
-        Set<Customer> devList = new HashSet<Customer>();
+    public List<Customer> getAll() {
+        List<Customer> devList = new ArrayList<>();
         try {
             // find the file with the customer date
             File devFile = new File(FILE_PATH);
