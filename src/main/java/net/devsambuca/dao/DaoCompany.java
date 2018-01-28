@@ -25,33 +25,46 @@ public class DaoCompany implements IDao<Company> {
 
     public Company read(long id) {
         try {
-            // find the file with the team date
-            File listCompanyFile = new File(FILE_PATH);
-            Scanner listCompanyScanner = new Scanner(listCompanyFile);
-            while (listCompanyScanner.hasNext()) {
-                Company team = new Company();
-                String nextLine = listCompanyScanner.nextLine();
-                String[] listCompanyData = nextLine.split(",");
-                team.setId((Long.parseLong(listCompanyData[0])));
-                team.setName(listCompanyData[1]);
-
-                if (id == team.getId()) {
-                    return team;
+            File companyFile = new File(FILE_PATH);
+            Scanner companyScanner = new Scanner(companyFile);
+            while (companyScanner.hasNext()) {
+                Company company = new Company();
+                String nextLine = companyScanner.nextLine();
+                String[] companyData = nextLine.split(",");
+                for (int i = 0; i < companyData.length; i++) {
+                    if (companyData[i].isEmpty()) continue;
+                    switch (i) {
+                        case 0:
+                            company.setId(Long.parseLong(companyData[i]));
+                            continue;
+                    }
+                    if (i == companyData.length - 1)
+                        company.setName(companyData[i]);
+                    else {
+                        Set<Project> projects = company.getProjects();
+                        if (projects == null) projects = new HashSet<>();
+                        DaoProject daoProject = new DaoProject();
+                        projects.add(daoProject.read((Long.valueOf(companyData[i]))));
+                        company.setProjects(projects);
+                    }
                 }
+                if (id == company.getId())
+                    return company;
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
+
         }
         return null;
     }
 
     public void update(Company company) {
         List<Company> listCompany = getAll();
-        Iterator<Company> iDev = listCompany.iterator();
-        while (iDev.hasNext()) {
-            Company s = iDev.next();
+        Iterator<Company> iCompany = listCompany.iterator();
+        while (iCompany.hasNext()) {
+            Company s = iCompany.next();
             if (s.getId() == company.getId())
-                iDev.remove();
+                iCompany.remove();
         }
         listCompany.add(company);
         Writer writer = null;
@@ -91,27 +104,39 @@ public class DaoCompany implements IDao<Company> {
     }
 
     public List<Company> getAll() {
-        List<Company> listCompanyList = new ArrayList<>();
         try {
-            // find the file with the team date
-            File listCompanyFile = new File(FILE_PATH);
-            Scanner listCompanyScanner = new Scanner(listCompanyFile);
-            while (listCompanyScanner.hasNext()) {
-                Company team = new Company();
-                String nextLine = listCompanyScanner.nextLine();
-                String[] listCompanyData = nextLine.split(",");
-                team.setId((Long.parseLong(listCompanyData[0])));
-                team.setName(listCompanyData[1]);
-                listCompanyList.add(team);
+            List<Company> companyList = new ArrayList<>();
+            File companyFile = new File(FILE_PATH);
+            Scanner companyScanner = new Scanner(companyFile);
+            while (companyScanner.hasNext()) {
+                Company company = new Company();
+                String nextLine = companyScanner.nextLine();
+                String[] companyData = nextLine.split(",");
+                for (int i = 0; i < companyData.length; i++) {
+                    if (companyData[i].isEmpty()) continue;
+                    switch (i) {
+                        case 0:
+                            company.setId(Long.parseLong(companyData[i]));
+                            continue;
+                    }
+                    if (i == companyData.length - 1)
+                        company.setName(companyData[i]);
+                    else {
+                        Set<Project> projects = company.getProjects();
+                        if (projects == null) projects = new HashSet<>();
+                        DaoProject daoProject = new DaoProject();
+                        projects.add(daoProject.read((Long.valueOf(companyData[i]))));
+                        company.setProjects(projects);
+                    }
+                }
+                companyList.add(company);
             }
-            return listCompanyList;
+
+            return companyList;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File not found");
+
         }
         return null;
-    }
-
-    public void create(){
-
     }
 }

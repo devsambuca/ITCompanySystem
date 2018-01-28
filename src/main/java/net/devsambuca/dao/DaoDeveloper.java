@@ -153,7 +153,6 @@ public class DaoDeveloper implements IDao<Developer> {
                 devList.add(developer);
             }
             return devList;
-
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
