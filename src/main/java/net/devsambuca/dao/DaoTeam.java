@@ -1,6 +1,8 @@
 package net.devsambuca.dao;
 
+import net.devsambuca.model.Developer;
 import net.devsambuca.model.Team;
+
 import java.io.*;
 import java.util.*;
 
@@ -24,19 +26,30 @@ public class DaoTeam implements IDao<Team> {
 
     public Team read(long id) {
         try {
-            // find the file with the team date
-            File listTeamFile = new File(FILE_PATH);
-            Scanner listTeamScanner = new Scanner(listTeamFile);
-            while (listTeamScanner.hasNext()) {
+            File projectFile = new File(FILE_PATH);
+            Scanner projectScanner = new Scanner(projectFile);
+            while (projectScanner.hasNext()) {
                 Team team = new Team();
-                String nextLine = listTeamScanner.nextLine();
-                String[] listTeamData = nextLine.split(",");
-                team.setId((Long.parseLong(listTeamData[0])));
-                team.setName(listTeamData[1]);
+                String nextLine = projectScanner.nextLine();
+                String[] teamData = nextLine.split(",");
 
-                if (id == team.getId()) {
-                    return team;
+                for (int i = 0; i < teamData.length; i++) {
+                    if (teamData[i].isEmpty()) continue;
+                    team.setId(Long.parseLong(teamData[i]));
+                    if (i == teamData.length)
+                        team.setName(teamData[i]);
+                    else {
+                        Set<Developer> developers = team.getDevelopers();
+                        if (developers == null) developers = new HashSet<>();
+                        DaoDeveloper daoDeveloper = new DaoDeveloper();
+                        developers.add(daoDeveloper.read((Long.valueOf(teamData[i]))));
+                        team.setDevelopers(developers);
+                    }
                 }
+
+                if (id == team.getId())
+                    return team;
+
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -90,20 +103,29 @@ public class DaoTeam implements IDao<Team> {
     }
 
     public List<Team> getAll() {
-        List<Team> listTeamList = new ArrayList<>();
         try {
-            // find the file with the team date
-            File listTeamFile = new File(FILE_PATH);
-            Scanner listTeamScanner = new Scanner(listTeamFile);
-            while (listTeamScanner.hasNext()) {
+            File teamFile = new File(FILE_PATH);
+            Scanner teamScanner = new Scanner(teamFile);
+            List<Team> teamList = new ArrayList<>();
+            while (teamScanner.hasNext()) {
                 Team team = new Team();
-                String nextLine = listTeamScanner.nextLine();
-                String[] listTeamData = nextLine.split(",");
-                team.setId((Long.parseLong(listTeamData[0])));
-                team.setName(listTeamData[1]);
-                listTeamList.add(team);
+                String nextLine = teamScanner.nextLine();
+                String[] teamData = nextLine.split(",");
+                team.setId(Long.parseLong(teamData[0]));
+                team.setName(teamData[1]);
+                for (int i = 0; i < teamData.length; i++) {
+                    if (teamData[i].isEmpty()) continue;
+                    if (i == teamData.length - 1) {
+                        Set<Developer> developers = team.getDevelopers();
+                        if (developers == null) developers = new HashSet<>();
+                        DaoDeveloper daoDeveloper = new DaoDeveloper();
+                        developers.add(daoDeveloper.read((Long.valueOf(teamData[i]))));
+                        team.setDevelopers(developers);
+                        teamList.add(team);
+                    }
+                }
             }
-            return listTeamList;
+            return teamList;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

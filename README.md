@@ -1,48 +1,34 @@
 Задание для финального проекта на Java Core
 
 Необходимо реализовать консольное приложение, в котором есть сущности:
-- Skill
-Навык разработчика (Java, SQL, C++, etc.)
-Long id, 
-String name
+- **Skill** Навык разработчика (Java, SQL, C++, etc.)<br>
+Long id; <br>
+String name;
 
-- Developer
-Разработчик
- 
-Long id, 
-String firstName, 
-String lastName, 
-String specialty, 
-Set<Skill> skills, 
-BigDecimal salary
+- **Developer** (Разработчик)<br>
+Long id, <br>
+String firstName, lastName, specialty; <br>
+Set< Skill > skills; <br>
+BigDecimal salary;
 
-- Team
-Команда, в которой работают разработчики
+- **Team** (Команда, в которой работают разработчики)<br>
+Long id; <br>
+String name; <br>
+Set< Developer > developers;
 
-Long id, 
-String name, 
-Set<Developer> developers
+- **Project** Проект (над которым работают)<br>
+Long id, <br>
+String name, <br>
+Set< Team > teams
 
-- Project
-Проект (над которым работают)
-Long id, 
-String name, 
-Set<Team> teams
+- **Company** Которая выполняет проект(ы)
+Long id, <br>
+String name, <br>
+Set< Project > projects
 
-- Company
-Которая выполняет проект(ы)
-
-Long id, 
-String name, 
-Set<Project> projects
-
-- Customer
-Клиент компании, который является заказчиком проекта
-
-Long id, 
-String firstName, 
-String lastName, 
-String address, 
+- **Customer** Клиент компании, который является заказчиком проекта
+Long id, <br>
+String firstName, lastName, address, <br>
 Set projects
 
 Необходимо реализовать консольное приложение, которое позволяет выполнять все CRUD операции над всеми сущностями.
