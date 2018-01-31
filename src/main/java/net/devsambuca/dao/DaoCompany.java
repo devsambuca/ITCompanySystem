@@ -118,16 +118,19 @@ public class DaoCompany implements IDao<Company> {
                         case 0:
                             company.setId(Long.parseLong(companyData[i]));
                             continue;
+                            case 1:
+                                company.setName(companyData[i]);
+                            continue;
+
                     }
-                    if (i == companyData.length - 1)
-                        company.setName(companyData[i]);
-                    else {
-                        Set<Project> projects = company.getProjects();
-                        if (projects == null) projects = new HashSet<>();
-                        DaoProject daoProject = new DaoProject();
-                        projects.add(daoProject.read((Long.valueOf(companyData[i]))));
-                        company.setProjects(projects);
-                    }
+//                    if (i == companyData.length - 1)
+//                        Projects = company.getProjects();
+//                        if (projects == null) projects = new HashSet<>();
+//                        DaoProject daoProject = new DaoProject();
+//                        projects.add(daoProject.read((Long.valueOf(companyData[i]))));
+//                        company.setProjects(projects);
+//
+//
                 }
                 companyList.add(company);
             }

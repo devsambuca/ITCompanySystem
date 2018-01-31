@@ -43,6 +43,6 @@ public class Team {
 
     @Override
     public String toString() {
-        return id + ", " + name + ", " + developers;
+        return id + ", " + name + ", " + '\n' + developers;
     }
 }

@@ -26,17 +26,20 @@ public class DaoTeam implements IDao<Team> {
 
     public Team read(long id) {
         try {
-            File projectFile = new File(FILE_PATH);
-            Scanner projectScanner = new Scanner(projectFile);
-            while (projectScanner.hasNext()) {
+            File teamFile = new File(FILE_PATH);
+            Scanner teamScanner = new Scanner(teamFile);
+            while (teamScanner.hasNext()) {
                 Team team = new Team();
-                String nextLine = projectScanner.nextLine();
+                String nextLine = teamScanner.nextLine();
                 String[] teamData = nextLine.split(",");
-
                 for (int i = 0; i < teamData.length; i++) {
                     if (teamData[i].isEmpty()) continue;
-                    team.setId(Long.parseLong(teamData[i]));
-                    if (i == teamData.length)
+                    switch (i) {
+                        case 0:
+                            team.setId(Long.parseLong(teamData[i]));
+                            continue;
+                    }
+                    if (i == teamData.length-1)
                         team.setName(teamData[i]);
                     else {
                         Set<Developer> developers = team.getDevelopers();
@@ -48,6 +51,7 @@ public class DaoTeam implements IDao<Team> {
                 }
 
                 if (id == team.getId())
+                    System.out.println(team);
                     return team;
 
             }

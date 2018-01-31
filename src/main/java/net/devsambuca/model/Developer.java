@@ -2,7 +2,7 @@ package net.devsambuca.model;
 
 import java.math.BigDecimal;
 import java.util.Set;
-import net.devsambuca.model.Skill;
+
 
 public class Developer {
 
@@ -69,6 +69,10 @@ public class Developer {
 
     public void setSkills(Set<Skill> skills) {
         this.skills = skills;
+    }
+
+    public  String addDev(){
+        return id + "," + firstName + "," + lastName;
     }
 
     @Override
