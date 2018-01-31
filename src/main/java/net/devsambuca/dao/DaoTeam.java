@@ -6,7 +6,7 @@ import net.devsambuca.model.Team;
 import java.io.*;
 import java.util.*;
 
-public class DaoTeam implements IDao<Team> {
+public class DaoTeam implements DaoImp<Team> {
 
     public static final String FILE_PATH = "src/main/resources/teams.txt";
 
@@ -36,7 +36,7 @@ public class DaoTeam implements IDao<Team> {
                 for (int i = 0; i < teamData.length; i++) {
                     if (teamData[i].isEmpty()) continue;
                     team.setId(Long.parseLong(teamData[i]));
-                    if (i == teamData.length)
+                    if(i == teamData.length)
                         team.setName(teamData[i]);
                     else {
                         Set<Developer> developers = team.getDevelopers();

@@ -6,7 +6,7 @@ import net.devsambuca.model.Project;
 import java.io.*;
 import java.util.*;
 
-public class DaoCompany implements IDao<Company> {
+public class DaoCompany implements DaoImp<Company> {
     public static final String FILE_PATH = "src/main/resources/company.txt";
 
     public void create(Company company) {

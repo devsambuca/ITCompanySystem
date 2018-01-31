@@ -1,11 +1,11 @@
 package net.devsambuca.controller;
 
 import net.devsambuca.dao.DaoSkill;
-import net.devsambuca.dao.IDao;
+import net.devsambuca.dao.DaoImp;
 import net.devsambuca.model.Skill;
 import java.util.List;
 
-public class SkillController implements IDao<Skill> {
+public class SkillController implements DaoImp<Skill> {
 
     private DaoSkill daoSkill = new DaoSkill();
 

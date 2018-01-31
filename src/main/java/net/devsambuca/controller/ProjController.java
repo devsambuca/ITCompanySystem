@@ -1,12 +1,12 @@
 package net.devsambuca.controller;
 
-import net.devsambuca.dao.IDao;
+import net.devsambuca.dao.DaoImp;
 import net.devsambuca.dao.DaoProject;
 import net.devsambuca.model.Project;
 
 import java.util.List;
 
-public class ProjController implements IDao<Project> {
+public class ProjController implements DaoImp<Project> {
 
     private DaoProject projectDAO = new DaoProject();
 

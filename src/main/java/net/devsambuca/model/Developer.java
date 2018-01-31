@@ -80,4 +80,7 @@ public class Developer {
                 ", " + skills +
                 ", " + salary;
     }
+    public String viewOnConsoleModel() {
+        return firstName + lastName;
+    }
 }

@@ -5,7 +5,7 @@ import net.devsambuca.model.Skill;
 import java.io.*;
 import java.util.*;
 
-public class DaoSkill implements IDao<Skill> {
+public class DaoSkill implements DaoImp<Skill> {
 
     private static final String FILE_PATH = "src/main/resources/skills.txt";
 

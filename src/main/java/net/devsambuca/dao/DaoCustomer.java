@@ -4,7 +4,7 @@ import net.devsambuca.model.Customer;
 import java.io.*;
 import java.util.*;
 
-public class DaoCustomer implements IDao<Customer> {
+public class DaoCustomer implements DaoImp<Customer> {
 
     public static final String FILE_PATH = "src/main/resources/customers.txt";
 

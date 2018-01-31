@@ -1,12 +1,12 @@
 package net.devsambuca.controller;
 
-import net.devsambuca.dao.IDao;
+import net.devsambuca.dao.DaoImp;
 import net.devsambuca.dao.DaoCompany;
 import net.devsambuca.model.Company;
 
 import java.util.List;
 
-public class ComController implements IDao<Company> {
+public class ComController implements DaoImp<Company> {
 
     private DaoCompany companyDAO = new DaoCompany();
 
