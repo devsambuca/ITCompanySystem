@@ -27,6 +27,6 @@ public class Skill {
     public void addIdSkill(long id) {this.id = id; }
     @Override
     public String toString() {
-        return id + ", " + name;
+        return  name;
     }
 }

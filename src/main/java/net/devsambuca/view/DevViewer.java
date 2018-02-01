@@ -16,7 +16,6 @@ public class DevViewer {
     boolean exit;
     DevController devController = new DevController();
     ViewEntity viewEntity = new ViewEntity();
-    //SkillController skillController =   new SkillController();
 
     public void run() {
         while (!exit) {
@@ -73,7 +72,6 @@ public class DevViewer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Input ID: ");
             Developer developer = new Developer();
-            Skill skill =   new Skill();
             developer.setId(Long.parseLong(reader.readLine()));
             System.out.println("Input firstname: ");
             developer.setFirstName(reader.readLine());

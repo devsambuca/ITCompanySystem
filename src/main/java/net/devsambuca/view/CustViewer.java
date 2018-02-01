@@ -2,6 +2,7 @@ package net.devsambuca.view;
 
 import net.devsambuca.controller.CustController;
 import net.devsambuca.model.Customer;
+import net.devsambuca.model.Developer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,6 +49,10 @@ public class CustViewer {
             default:
                 System.out.println("An unknown error has occured.");
         }
+    }
+
+    private void pullOutOf (Developer developer){
+        developer.getId()
     }
 
     private void read() {

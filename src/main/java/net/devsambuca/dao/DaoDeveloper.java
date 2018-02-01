@@ -7,7 +7,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class DaoDeveloper implements DaoImp<Developer> {
+public class DaoDeveloper{ //implements DaoImp<Developer> {
 
     public static final String FILE_PATH = "src/main/resources/developers.txt";
 
@@ -28,7 +28,7 @@ public class DaoDeveloper implements DaoImp<Developer> {
     public Developer read(long id) {
         try {
             File devFile = new File(FILE_PATH);
-            Scanner devScanner = new Scanner(devFile);////////ArrayList<Developer> developers = new ArrayList<>();
+            Scanner devScanner = new Scanner(devFile);
             while (devScanner.hasNext()) {
                 Developer developer = new Developer();
                 String nextLine = devScanner.nextLine();
