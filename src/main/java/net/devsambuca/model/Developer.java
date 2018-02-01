@@ -71,9 +71,6 @@ public class Developer {
         this.skills = skills;
     }
 
-    public  String addDev(){
-        return id + "," + firstName + "," + lastName;
-    }
 
     @Override
     public String toString() {
@@ -83,8 +80,6 @@ public class Developer {
                 ", " + specialty +
                 ", " + skills +
                 ", " + salary;
-    }
-    public String viewOnConsoleModel() {
-        return firstName + lastName;
+
     }
 }

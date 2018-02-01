@@ -53,6 +53,7 @@ public class DaoTeam implements DaoImp<Team> {
 
                 if (id == team.getId())
                     System.out.println(team);
+
                     return team;
 
             }

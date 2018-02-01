@@ -1,6 +1,9 @@
 package net.devsambuca.dao;
 
 import net.devsambuca.model.Customer;
+import net.devsambuca.model.Project;
+import net.devsambuca.view.CustViewer;
+
 import java.io.*;
 import java.util.*;
 
@@ -24,18 +27,35 @@ public class DaoCustomer implements DaoImp<Customer> {
 
     public Customer read(long id) {
         try {
-            // find the file with the customer date
-            File devFile = new File(FILE_PATH);
-            Scanner devScanner = new Scanner(devFile);
-            while (devScanner.hasNext()) {
+            File customerFile = new File(FILE_PATH);
+            Scanner customerScanner = new Scanner(customerFile);
+            while (customerScanner.hasNext()) {
                 Customer customer = new Customer();
-                String nextLine = devScanner.nextLine();
-                String[] devData = nextLine.split(",");
-                customer.setId((Long.parseLong(devData[0])));
-                customer.setFirstName(devData[1]);
-                customer.setLastName(devData[2]);
-                customer.setAdress(devData[3]);
-
+                String nextLine = customerScanner.nextLine();
+                String[] customerData = nextLine.split(",");
+                for (int i = 0; i <customerData.length; i++) {
+                    if (customerData[i].isEmpty()) continue;
+                    switch (i) {
+                        case 0:
+                            customer.setId(Long.parseLong(customerData[i]));
+                            continue;
+                        case 1:
+                            customer.setFirstName(customerData[i]);
+                            continue;
+                        case 2:
+                            customer.setLastName(customerData[i]);
+                            continue;
+                    }
+                    if (i == customerData.length - 1)
+                        customer.setAdress(customerData[i]);
+                    else {
+                        Set<Project> projects = customer.getProjects();
+                        if (projects == null) projects = new HashSet<>();
+                        DaoProject daoProject = new DaoProject();
+                        projects.add(daoProject.read((Long.valueOf(customerData[i]))));
+                        customer.setProjects(projects);
+                    }
+                }
                 if (id == customer.getId()) {
                     return customer;
                 }
@@ -47,18 +67,18 @@ public class DaoCustomer implements DaoImp<Customer> {
     }
 
     public void update(Customer customer) {
-        List<Customer> dev = getAll();
-        Iterator<Customer> iDev = dev.iterator();
-        while (iDev.hasNext()) {
-            Customer s = iDev.next();
+        List<Customer> customerList = getAll();
+        Iterator<Customer> iCustomer = customerList.iterator();
+        while (iCustomer.hasNext()) {
+            Customer s = iCustomer.next();
             if (s.getId() == customer.getId())
-                iDev.remove();
+                iCustomer.remove();
         }
-        dev.add(customer);
+        customerList.add(customer);
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);
-            for (Customer line : dev) {
+            for (Customer line : customerList) {
                 writer.write(String.valueOf(line));
                 writer.write(System.getProperty("line.separator"));
             }
@@ -71,8 +91,8 @@ public class DaoCustomer implements DaoImp<Customer> {
     }
 
     public void delete(long id) {
-        List<Customer> dev = getAll();
-        Iterator<Customer> iDev = dev.iterator();
+        List<Customer> customer = getAll();
+        Iterator<Customer> iDev = customer.iterator();
         while (iDev.hasNext()) {
             Customer s = iDev.next();
             if (s.getId() == id)
@@ -81,7 +101,7 @@ public class DaoCustomer implements DaoImp<Customer> {
         Writer writer = null;
         try {
             writer = new FileWriter(FILE_PATH);
-            for (Customer d : dev) {
+            for (Customer d : customer) {
                 writer.write(String.valueOf(d));
                 writer.write(System.getProperty("line.separator"));
             }
@@ -92,22 +112,22 @@ public class DaoCustomer implements DaoImp<Customer> {
     }
 
     public List<Customer> getAll() {
-        List<Customer> devList = new ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
         try {
             // find the file with the customer date
-            File devFile = new File(FILE_PATH);
-            Scanner devScanner = new Scanner(devFile);
-            while (devScanner.hasNext()) {
+            File customerFile = new File(FILE_PATH);
+            Scanner customerScanner = new Scanner(customerFile);
+            while (customerScanner.hasNext()) {
                 Customer customer = new Customer();
-                String nextLine = devScanner.nextLine();
-                String[] devData = nextLine.split(",");
-                customer.setId((Long.parseLong(devData[0])));
-                customer.setFirstName(devData[1]);
-                customer.setLastName(devData[2]);
-                customer.setAdress(devData[3]);
-                devList.add(customer);
+                String nextLine = customerScanner.nextLine();
+                String[] customerData = nextLine.split(",");
+                customer.setId((Long.parseLong(customerData[0])));
+                customer.setFirstName(customerData[1]);
+                customer.setLastName(customerData[2]);
+                customer.setAdress(customerData[3]);
+                customerList.add(customer);
             }
-            return devList;
+            return customerList;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

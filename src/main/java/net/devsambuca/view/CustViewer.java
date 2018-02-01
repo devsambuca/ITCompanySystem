@@ -52,7 +52,12 @@ public class CustViewer {
     }
 
     private void pullOutOf (Developer developer){
-        developer.getId()
+        long id;
+        String customerFirstName;
+        id = developer.getId();
+        customerFirstName = developer.getFirstName();
+        System.out.println(id + "," + customerFirstName);
+
     }
 
     private void read() {
@@ -83,7 +88,7 @@ public class CustViewer {
             customer.setLastName(reader.readLine());
             System.out.println("Input address: ");
             customer.setAdress(reader.readLine());
-            System.out.println("Input address: ");
+            System.out.println("Input project(s): " + "The format of the entered project should be, for example: 1,2,3");
             customer.setProject(reader.readLine().toString());
             custController.create(customer);
         } catch (IOException e) {
