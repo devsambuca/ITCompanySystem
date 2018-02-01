@@ -14,7 +14,7 @@ public class DevController implements DaoImp<Developer> {
         this.developerDAO.create(developer);
     }
 
-    public Developer read(long id) throws FileNotFoundException {
+    public Developer read(long id){
         return this.developerDAO.read(id);
     }
 

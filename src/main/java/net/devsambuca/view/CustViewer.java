@@ -51,13 +51,14 @@ public class CustViewer {
         }
     }
 
-    private void pullOutOf (Developer developer){
+    private void pullOutOf(Customer customer){
         long id;
-        String customerFirstName;
-        id = developer.getId();
-        customerFirstName = developer.getFirstName();
-        System.out.println(id + "," + customerFirstName);
-
+        String customerFirstName,customerLastName,customerAddress;
+        id = customer.getId();
+        customerFirstName = customer.getFirstName();
+        customerLastName = customer.getLastName();
+        customerAddress = customer.getAdress();
+        System.out.println(id + ", " + customerFirstName + ", " +customerLastName + ", " + customerAddress);
     }
 
     private void read() {
@@ -65,8 +66,8 @@ public class CustViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                custController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                System.out.println(custController.read(Long.parseLong(reader.readLine())));
+
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
@@ -89,7 +90,7 @@ public class CustViewer {
             System.out.println("Input address: ");
             customer.setAdress(reader.readLine());
             System.out.println("Input project(s): " + "The format of the entered project should be, for example: 1,2,3");
-            customer.setProject(reader.readLine().toString());
+            customer.setProject(reader.readLine());
             custController.create(customer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,7 +110,7 @@ public class CustViewer {
             System.out.println("Input address: ");
             customer.setAdress(reader.readLine());
             System.out.println("Input project: ");
-            customer.setProject(reader.readLine().toString());
+            customer.setProject(reader.readLine());
             custController.update(customer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,7 +130,7 @@ public class CustViewer {
     private void showAllCustomers() {
         List<Customer> customers = custController.getAll();
         for(Customer customer : customers)
-            System.out.println(customer);
+            pullOutOf(customer);
     }
 
     private void returnMainMenu() {

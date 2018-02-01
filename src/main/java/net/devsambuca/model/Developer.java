@@ -72,14 +72,14 @@ public class Developer {
     }
 
 
-    @Override
-    public String toString() {
-        return id +
-                ", " + firstName +
-                ", " + lastName +
-                ", " + specialty +
-                ", " + skills +
-                ", " + salary;
-
-    }
+//    @Override
+//    public String toString() {
+//        return id +
+//                ", " + firstName +
+//                ", " + lastName +
+//                ", " + specialty +
+//                ", " + skills +
+//                ", " + salary;
+//
+//    }
 }

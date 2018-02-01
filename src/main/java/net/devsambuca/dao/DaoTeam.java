@@ -52,8 +52,6 @@ public class DaoTeam implements DaoImp<Team> {
                 }
 
                 if (id == team.getId())
-                    System.out.println(team);
-
                     return team;
 
             }
@@ -118,10 +116,9 @@ public class DaoTeam implements DaoImp<Team> {
                 String nextLine = teamScanner.nextLine();
                 String[] teamData = nextLine.split(",");
 
-                team.setId(Long.parseLong(teamData[0]));
-                team.setName(teamData[1]);
                 for (int i = 0; i < teamData.length; i++) {
                     if (teamData[i].isEmpty()) continue;
+
                     if (i == teamData.length - 1) {
                         Set<Developer> developers = team.getDevelopers();
                         if (developers == null) developers = new HashSet<>();

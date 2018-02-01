@@ -112,7 +112,7 @@ public class DaoCustomer implements DaoImp<Customer> {
     }
 
     public List<Customer> getAll() {
-        List<Customer> customerList = new ArrayList<>();
+        List<Customer> customerList = new ArrayList<Customer>();
         try {
             // find the file with the customer date
             File customerFile = new File(FILE_PATH);
@@ -121,10 +121,23 @@ public class DaoCustomer implements DaoImp<Customer> {
                 Customer customer = new Customer();
                 String nextLine = customerScanner.nextLine();
                 String[] customerData = nextLine.split(",");
-                customer.setId((Long.parseLong(customerData[0])));
-                customer.setFirstName(customerData[1]);
-                customer.setLastName(customerData[2]);
-                customer.setAdress(customerData[3]);
+                for (int i = 0; i < customerData.length; i++) {
+                    if (customerData[i].isEmpty()) continue;
+                    switch (i) {
+                        case 0:
+                            customer.setId(Long.parseLong(customerData[i]));
+                            continue;
+                        case 1:
+                            customer.setFirstName(customerData[i]);
+                            continue;
+                        case 2:
+                            customer.setLastName(customerData[i]);
+                            continue;
+                    }
+                    if (i == customerData.length - 1)
+                        customer.setAdress((customerData[i]));
+
+                }
                 customerList.add(customer);
             }
             return customerList;

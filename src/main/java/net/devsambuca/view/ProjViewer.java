@@ -20,6 +20,14 @@ public class ProjViewer {
         }
     }
 
+    private void pullOutOf(Project project){
+        long projectId;
+        String projectName;
+        projectId = project.getId();
+        projectName = project.getName();
+        System.out.println(projectId + ", " + projectName);
+    }
+
     private void performAction(int choice) {
         switch (choice) {
             case 0:
@@ -111,7 +119,7 @@ public class ProjViewer {
     private void showAllProjects(){
         List<Project> projects = projController.getAll();
         for(Project project : projects)
-            System.out.println(project);
+            pullOutOf(project);
     }
 
     private void returnMainMenu() {

@@ -1,5 +1,6 @@
 package net.devsambuca.view;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import net.devsambuca.controller.ComController;
 import net.devsambuca.controller.ProjController;
 import net.devsambuca.model.Company;
@@ -23,6 +24,14 @@ public class ComViewer {
             int choice = viewEntity.getInputOperation();
             performAction(choice);
         }
+    }
+
+    private void pullOutOf(Company company){
+        long id;
+        String companyName;
+        id = company.getId();
+        companyName = company.getName();
+        System.out.println(id + "," + companyName);
     }
 
     private void performAction(int choice) {
@@ -122,7 +131,7 @@ public class ComViewer {
     private void showAllCompanies(){
         List<Company> companies = comController.getAll();
         for(Company company : companies) {
-            System.out.println(company);
+            pullOutOf(company);
         }
     }
 

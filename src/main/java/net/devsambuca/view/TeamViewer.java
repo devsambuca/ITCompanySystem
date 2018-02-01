@@ -22,6 +22,14 @@ public class TeamViewer {
         }
     }
 
+    private void pullOutOf(Team team){
+        long teamId;
+        String teamName;
+        teamId = team.getId();
+        teamName = team.getName();
+        System.out.println(teamId + "," + teamName);
+    }
+
     private void performAction(int choice) {
         switch (choice) {
             case 0:
@@ -56,8 +64,7 @@ public class TeamViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID team: ");
-                teamController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                System.out.println(teamController.read(Long.parseLong(reader.readLine())));
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
@@ -76,7 +83,7 @@ public class TeamViewer {
             System.out.println("Input name: ");
             team.setName(reader.readLine());
             System.out.println("Input developer: ");
-            team.setDeveloper(reader.readLine().toString());
+            team.setDeveloper(reader.readLine());
             teamController.create(team);
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,7 +99,7 @@ public class TeamViewer {
             System.out.println("Input name: ");
             team.setName(reader.readLine());
             System.out.println("Input developer: ");
-            team.setDeveloper(reader.readLine().toString());
+            team.setDeveloper(reader.readLine());
             teamController.update(team);
         } catch (IOException e) {
             e.printStackTrace();
@@ -113,7 +120,7 @@ public class TeamViewer {
     private void showAllTeam() {
         List<Team> teams = teamController.getAll();
         for (Team team : teams)
-            System.out.println(team);
+            pullOutOf(team);
     }
 
     private void returnMainMenu() {

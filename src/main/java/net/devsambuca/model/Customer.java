@@ -6,12 +6,19 @@ public class Customer {
     private Long id;
     private String firstName;
     private String lastName;
-    private String adress;
+    private String address;
     private Set projects;
     private String project;
 
     public Customer() {
     }
+
+//    public Customer(String [] line) {
+//        this.id = Long.parseLong(line[0]);
+//        this.firstName = line[1];
+//        this.lastName = line[2];
+//        this.address = line[line.length - 1];
+//    }
 
     public Long getId() {
         return id;
@@ -38,11 +45,11 @@ public class Customer {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getProject() {
@@ -61,12 +68,12 @@ public class Customer {
         this.projects = projects;
     }
 
-    @Override
-    public String toString() {
-        return id +
-                ", " + firstName +
-                ", " + lastName +
-                ", " + adress +
-                ", " + projects;
-    }
+//    @Override
+//    public String toString() {
+//        return id +
+//                ", " + firstName +
+//                ", " + lastName +
+//                ", " + address +
+//                ", " + projects;
+//    }
 }
