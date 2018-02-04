@@ -43,8 +43,10 @@ public class DaoCompany implements DaoImp<Company> {
                     else {
                         Set<Project> projects = company.getProjects();
                         if (projects == null) projects = new HashSet<>();
-                        DaoProject daoProject = new DaoProject();
-                        projects.add(daoProject.read((Long.valueOf(companyData[i]))));
+                        Project project = new Project(Long.parseLong(companyData[i]));
+                        if (id == project.getId())
+                            projects.add(project);
+
                         company.setProjects(projects);
                     }
                 }

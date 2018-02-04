@@ -67,13 +67,4 @@ public class Customer {
     public void setProjects(Set projects) {
         this.projects = projects;
     }
-
-//    @Override
-//    public String toString() {
-//        return id +
-//                ", " + firstName +
-//                ", " + lastName +
-//                ", " + address +
-//                ", " + projects;
-//    }
 }

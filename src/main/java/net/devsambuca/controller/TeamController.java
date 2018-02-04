@@ -14,8 +14,8 @@ public class TeamController implements DaoImp<Team> {
         }
 
         public Team read(long id) {
-            this.teamDAO.read(id);
-            return null;
+            return this.teamDAO.read(id);
+
         }
 
         public void update(Team team) {

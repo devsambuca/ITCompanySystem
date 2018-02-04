@@ -15,8 +15,8 @@ public class ProjController implements DaoImp<Project> {
     }
 
     public Project read(long id) {
-        this.projectDAO.read(id);
-        return null;
+        return this.projectDAO.read(id);
+
     }
 
     public void update(Project project) {

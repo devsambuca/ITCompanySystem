@@ -26,12 +26,24 @@ public class ComViewer {
         }
     }
 
-    private void pullOutOf(Company company){
+    private void pullOutOf(Company company) {
         long id;
         String companyName;
         id = company.getId();
         companyName = company.getName();
         System.out.println(id + "," + companyName);
+    }
+
+    private void showCompany(Company company) {
+        Long id;
+        String companyName;
+        Set<Project> projects;
+        id = company.getId();
+        companyName = company.getName();
+        projects = company.getProjects();
+        System.out.println(id + ", "
+                + companyName + ","
+                + projects);
     }
 
     private void performAction(int choice) {
@@ -63,13 +75,25 @@ public class ComViewer {
         }
     }
 
+    private void showDetailsOfTheCompany(Company company) {
+        Long id;
+        String companyName;
+        Set<Project> projects;
+        id = company.getId();
+        companyName = company.getName();
+        projects = company.getProjects();
+        System.out.println(id + "," +
+                companyName + ","
+                + projects);
+    }
+
     private void read() {
         while (true) {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                comController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                showDetailsOfTheCompany(comController.read(Long.parseLong(reader.readLine())));
+
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
@@ -128,9 +152,9 @@ public class ComViewer {
         }
     }
 
-    private void showAllCompanies(){
+    private void showAllCompanies() {
         List<Company> companies = comController.getAll();
-        for(Company company : companies) {
+        for (Company company : companies) {
             pullOutOf(company);
         }
     }

@@ -40,9 +40,4 @@ public class Team {
     public void setDeveloper(String developer) {
         this.developer = developer;
     }
-
-    @Override
-    public String toString() {
-        return id + ", " + name + ", " + '\n' + developers;
-    }
 }

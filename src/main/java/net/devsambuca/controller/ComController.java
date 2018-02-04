@@ -15,8 +15,7 @@ public class ComController implements DaoImp<Company> {
     }
 
     public Company read(long id) {
-        this.companyDAO.read(id);
-        return null;
+       return this.companyDAO.read(id);
     }
 
     public void update(Company company) {

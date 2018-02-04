@@ -13,6 +13,10 @@ public class Project {
 
     }
 
+    public Project(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -44,9 +48,9 @@ public class Project {
     public void setTeam(String team) {
         this.team = team;
     }
-
-    @Override
-    public String toString() {
-        return id + ", " + name+ ", " + teams;
-    }
+//
+//    @Override
+//    public String toString() {
+//        return name;
+//    }
 }

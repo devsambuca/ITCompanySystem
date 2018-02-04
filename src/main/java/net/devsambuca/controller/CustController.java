@@ -15,8 +15,7 @@ public class CustController implements DaoImp<Customer> {
     }
 
     public Customer read(long id) {
-        this.customerDAO.read(id);
-        return null;
+        return this.customerDAO.read(id);
     }
 
     public void update(Customer customer) {

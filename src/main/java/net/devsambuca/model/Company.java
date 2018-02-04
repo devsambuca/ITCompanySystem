@@ -1,9 +1,7 @@
 package net.devsambuca.model;
-
 import java.util.Set;
 
 public class Company {
-
     private Long id;
     private String name;
     private Set<Project> projects;
@@ -43,10 +41,5 @@ public class Company {
 
     public void setProject(String project) {
         this.project = project;
-    }
-
-    @Override
-    public String toString() {
-        return id + ", " + name+ ", " + projects;
     }
 }

@@ -3,11 +3,13 @@ package net.devsambuca.view;
 import net.devsambuca.controller.CustController;
 import net.devsambuca.model.Customer;
 import net.devsambuca.model.Developer;
+import net.devsambuca.model.Project;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Set;
 
 public class CustViewer {
     boolean exit;
@@ -51,6 +53,24 @@ public class CustViewer {
         }
     }
 
+    private void showDeveloper(Customer customer) {
+        Long id;
+        String firstName;
+        String lastName;
+        String address;
+        Set<Project> projects;
+        id = customer.getId();
+        firstName = customer.getFirstName();
+        lastName = customer.getLastName();
+        address = customer.getAdress();
+        projects = customer.getProjects();
+        System.out.println(id + "," +
+                firstName + ","
+                + lastName + ","
+                + projects + ","
+                + address);
+    }
+
     private void pullOutOf(Customer customer){
         long id;
         String customerFirstName,customerLastName,customerAddress;
@@ -66,8 +86,7 @@ public class CustViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                System.out.println(custController.read(Long.parseLong(reader.readLine())));
-
+                showDeveloper(custController.read(Long.parseLong(reader.readLine())));
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {

@@ -71,15 +71,4 @@ public class Developer {
         this.skills = skills;
     }
 
-
-//    @Override
-//    public String toString() {
-//        return id +
-//                ", " + firstName +
-//                ", " + lastName +
-//                ", " + specialty +
-//                ", " + skills +
-//                ", " + salary;
-//
-//    }
 }
