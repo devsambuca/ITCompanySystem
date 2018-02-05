@@ -103,7 +103,7 @@ public class ViewEntity {
     }
 
     public void showMenu() {
-        System.out.println("\nPlease make a selection 0-5");
+        System.out.println("\nPlease make a selection 0-6");
         System.out.println("1. create");
         System.out.println("2. read");
         System.out.println("3. update");

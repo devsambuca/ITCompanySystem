@@ -115,19 +115,17 @@ public class DaoTeam implements DaoImp<Team> {
                 Team team = new Team();
                 String nextLine = teamScanner.nextLine();
                 String[] teamData = nextLine.split(",");
-
                 for (int i = 0; i < teamData.length; i++) {
                     if (teamData[i].isEmpty()) continue;
-
-                    if (i == teamData.length - 1) {
-                        Set<Developer> developers = team.getDevelopers();
-                        if (developers == null) developers = new HashSet<>();
-                        DaoDeveloper daoDeveloper = new DaoDeveloper();
-                        developers.add(daoDeveloper.read((Long.valueOf(teamData[i]))));
-                        team.setDevelopers(developers);
-                        teamList.add(team);
+                    switch (i) {
+                        case 0:
+                            team.setId(Long.parseLong(teamData[i]));
+                            continue;
                     }
+                    if (i == teamData.length - 1)
+                        team.setName((teamData[i]));
                 }
+                teamList.add(team);
             }
             return teamList;
         } catch (FileNotFoundException e) {

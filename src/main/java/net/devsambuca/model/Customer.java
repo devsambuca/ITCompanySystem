@@ -13,13 +13,6 @@ public class Customer {
     public Customer() {
     }
 
-//    public Customer(String [] line) {
-//        this.id = Long.parseLong(line[0]);
-//        this.firstName = line[1];
-//        this.lastName = line[2];
-//        this.address = line[line.length - 1];
-//    }
-
     public Long getId() {
         return id;
     }

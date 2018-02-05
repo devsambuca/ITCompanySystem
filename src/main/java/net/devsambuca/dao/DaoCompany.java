@@ -43,10 +43,8 @@ public class DaoCompany implements DaoImp<Company> {
                     else {
                         Set<Project> projects = company.getProjects();
                         if (projects == null) projects = new HashSet<>();
-                        Project project = new Project(Long.parseLong(companyData[i]));
-                        if (id == project.getId())
-                            projects.add(project);
-
+                        DaoProject daoProject = new DaoProject();
+                        projects.add(daoProject.read(Long.parseLong(companyData[i])));
                         company.setProjects(projects);
                     }
                 }
@@ -120,27 +118,15 @@ public class DaoCompany implements DaoImp<Company> {
                         case 0:
                             company.setId(Long.parseLong(companyData[i]));
                             continue;
-                            case 1:
-                                company.setName(companyData[i]);
-                            continue;
-
                     }
-//                    if (i == companyData.length - 1)
-//                        Projects = company.getProjects();
-//                        if (projects == null) projects = new HashSet<>();
-//                        DaoProject daoProject = new DaoProject();
-//                        projects.add(daoProject.read((Long.valueOf(companyData[i]))));
-//                        company.setProjects(projects);
-//
-//
+                    if (i == companyData.length - 1)
+                        company.setName((companyData[i]));
                 }
                 companyList.add(company);
             }
-
             return companyList;
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
-
         }
         return null;
     }

@@ -142,13 +142,6 @@ public class DaoDeveloper{ //implements DaoImp<Developer> {
                     }
                     if (i == devData.length - 1)
                         developer.setSalary(BigDecimal.valueOf(Double.parseDouble(devData[i])));
-                    else {
-                        Set<Skill> skills = developer.getSkills();
-                        if (skills == null) skills = new HashSet<>();
-                        DaoSkill daoSkill = new DaoSkill();
-                        skills.add(daoSkill.read((Long.valueOf(devData[i]))));
-                        developer.setSkills(skills);
-                    }
                 }
                 devList.add(developer);
             }

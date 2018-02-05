@@ -45,38 +45,55 @@ public class DevViewer {
             case 5:
                 showAllDeveloper();
                 break;
+            case 6:
+                returnMainMenu();
+                break;
             default:
                 System.out.println("An unknown error has occured.");
         }
     }
 
-    private void showDeveloper(Developer developer) {
-        Long id;
-        String firstName;
-        String lastName;
-        String specialty;
-        Set<Skill> skills;
-        BigDecimal salary;
+    private void pullOutOf(Developer developer) {
+        long id;
+        String developerFirstName, developerLastName, developerSpecialty;
+        BigDecimal developerSalary;
         id = developer.getId();
-        firstName = developer.getFirstName();
-        lastName = developer.getLastName();
-        specialty = developer.getSpecialty();
-        skills = developer.getSkills();
-        salary = developer.getSalary();
-        System.out.println(id + "," +
-                firstName + ","
-                + lastName + ","
-                + specialty + ","
-                + skills + ","
-                + salary);
+        developerFirstName = developer.getFirstName();
+        developerLastName = developer.getLastName();
+        developerSpecialty = developer.getSpecialty();
+        developerSalary = developer.getSalary();
+        System.out.println(id +
+                ", " + developerFirstName +
+                ", " + developerLastName +
+                ", " + developerSpecialty +
+                ", " + developerSalary);
     }
+
+    private void showDetailsOfTheDeveloper(Developer developer) {
+        String developerFirstName, developerLastName, developerSpecialty;
+        BigDecimal developerSalary;
+        Set<Skill> skills;
+        developerFirstName = developer.getFirstName();
+        developerLastName = developer.getLastName();
+        developerSpecialty = developer.getSpecialty();
+        developerSalary = developer.getSalary();
+        skills = developer.getSkills();
+        System.out.println("<----- Information about the developer ----->" + '\n');
+        System.out.println("First name: "
+                + developerFirstName + '\n' +
+                "Last name: " + developerLastName + '\n' +
+                "Specialty: " + developerSpecialty + '\n' +
+                "Skills: " + skills + '\n' +
+                "Salary: " + developerSalary);
+
+}
 
     private void read() {
         while (true) {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID developer: ");
-                showDeveloper(devController.read(Long.parseLong(reader.readLine())));
+                showDetailsOfTheDeveloper(devController.read(Long.parseLong(reader.readLine())));
 
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
@@ -102,7 +119,7 @@ public class DevViewer {
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
             System.out.println("Input skill");
-            developer.setSkill(reader.readLine().toString());
+            developer.setSkill(reader.readLine());
             devController.create(developer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,7 +141,7 @@ public class DevViewer {
             System.out.println("Input salary: ");
             developer.setSalary(BigDecimal.valueOf(Double.parseDouble(reader.readLine())));
             System.out.println("Input skill");
-            developer.setSkill(reader.readLine().toString());
+            developer.setSkill(reader.readLine());
             devController.update(developer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,7 +162,15 @@ public class DevViewer {
     private void showAllDeveloper() {
         List<Developer> developers = devController.getAll();
         for (Developer dev : developers)
-            System.out.println(dev);
+            pullOutOf(dev);
+    }
+
+    private void returnMainMenu() {
+        try {
+            viewEntity.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

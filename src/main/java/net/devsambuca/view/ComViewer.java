@@ -34,18 +34,6 @@ public class ComViewer {
         System.out.println(id + "," + companyName);
     }
 
-    private void showCompany(Company company) {
-        Long id;
-        String companyName;
-        Set<Project> projects;
-        id = company.getId();
-        companyName = company.getName();
-        projects = company.getProjects();
-        System.out.println(id + ", "
-                + companyName + ","
-                + projects);
-    }
-
     private void performAction(int choice) {
         switch (choice) {
             case 0:
@@ -75,16 +63,22 @@ public class ComViewer {
         }
     }
 
+    private void showAllCompanies() {
+        List<Company> companies = comController.getAll();
+        for (Company company : companies) {
+            pullOutOf(company);
+        }
+    }
+
     private void showDetailsOfTheCompany(Company company) {
         Long id;
         String companyName;
         Set<Project> projects;
-        id = company.getId();
         companyName = company.getName();
         projects = company.getProjects();
-        System.out.println(id + "," +
-                companyName + ","
-                + projects);
+        System.out.println("<----- Information about the company ----->" + '\n');
+        System.out.println("Name company: " + companyName + '\n' +
+                "Projects: " + projects);
     }
 
     private void read() {
@@ -152,12 +146,7 @@ public class ComViewer {
         }
     }
 
-    private void showAllCompanies() {
-        List<Company> companies = comController.getAll();
-        for (Company company : companies) {
-            pullOutOf(company);
-        }
-    }
+
 
     private void returnMainMenu() {
         try {

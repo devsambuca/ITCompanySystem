@@ -71,4 +71,11 @@ public class Developer {
         this.skills = skills;
     }
 
+    @Override
+    public String toString() {
+        return firstName +
+                " " + lastName +
+                ", " + specialty +
+                ", " + salary;
+    }
 }

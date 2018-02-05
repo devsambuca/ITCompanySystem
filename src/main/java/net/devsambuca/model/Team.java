@@ -7,6 +7,12 @@ public class Team {
     private String name;
     private String developer;
 
+    public Team(Long id) {
+        this.id = id;
+    }
+
+    public Team() {}
+
     private Set<Developer> developers;
 
     public Long getId() {
@@ -39,5 +45,10 @@ public class Team {
 
     public void setDeveloper(String developer) {
         this.developer = developer;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

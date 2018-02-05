@@ -2,7 +2,6 @@ package net.devsambuca.dao;
 
 import net.devsambuca.model.Project;
 import net.devsambuca.model.Team;
-
 import java.io.*;
 import java.util.*;
 
@@ -31,21 +30,23 @@ public class DaoProject implements DaoImp<Project> {
                 Project project = new Project();
                 String nextLine = projectScanner.nextLine();
                 String[] projectData = nextLine.split(",");
-
                 for (int i = 0; i < projectData.length; i++) {
                     if (projectData[i].isEmpty()) continue;
-                    project.setId(Long.parseLong(projectData[i]));
+                    switch (i) {
+                        case 0:
+                            project.setId(Long.parseLong(projectData[i]));
+                            continue;
+                    }
                     if (i == projectData.length - 1)
                         project.setName(projectData[i]);
                     else {
                         Set<Team> teams = project.getTeams();
                         if (teams == null) teams = new HashSet<>();
                         DaoTeam daoTeam = new DaoTeam();
-                        teams.add(daoTeam.read((Long.valueOf(projectData[i]))));
+                        teams.add(daoTeam.read(Long.parseLong(projectData[i])));
                         project.setTeams(teams);
                     }
                 }
-
                 if (id == project.getId()) {
                     return project;
                 }
@@ -102,20 +103,27 @@ public class DaoProject implements DaoImp<Project> {
     }
 
     public List<Project> getAll() {
-        List<Project> listProjectList = new ArrayList<>();
+        List<Project> projectList = new ArrayList<>();
         try {
-            // find the file with the team date
-            File listProjectFile = new File(FILE_PATH);
-            Scanner listProjectScanner = new Scanner(listProjectFile);
-            while (listProjectScanner.hasNext()) {
-                Project team = new Project();
-                String nextLine = listProjectScanner.nextLine();
-                String[] listProjectData = nextLine.split(",");
-                team.setId((Long.parseLong(listProjectData[0])));
-                team.setName(listProjectData[1]);
-                listProjectList.add(team);
+            File projectFile = new File(FILE_PATH);
+            Scanner projectScanner = new Scanner(projectFile);
+            while (projectScanner.hasNext()) {
+                Project project = new Project();
+                String nextLine = projectScanner.nextLine();
+                String[] projectData = nextLine.split(",");
+                for (int i = 0; i < projectData.length; i++) {
+                    if (projectData[i].isEmpty()) continue;
+                    switch (i) {
+                        case 0:
+                            project.setId(Long.parseLong(projectData[i]));
+                            continue;
+                    }
+                    if (i == projectData.length - 1)
+                        project.setName((projectData[i]));
+                }
+                projectList.add(project);
             }
-            return listProjectList;
+            return projectList;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

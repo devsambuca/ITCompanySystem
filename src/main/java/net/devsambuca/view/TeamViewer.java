@@ -1,12 +1,14 @@
 package net.devsambuca.view;
 
 import net.devsambuca.controller.TeamController;
+import net.devsambuca.model.Developer;
 import net.devsambuca.model.Team;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Set;
 
 public class TeamViewer {
     boolean exit;
@@ -27,7 +29,7 @@ public class TeamViewer {
         String teamName;
         teamId = team.getId();
         teamName = team.getName();
-        System.out.println(teamId + "," + teamName);
+        System.out.println(teamId + ", " + teamName);
     }
 
     private void performAction(int choice) {
@@ -59,12 +61,24 @@ public class TeamViewer {
         }
     }
 
+    private void showDetailsOfTheTeam(Team team) {
+        Long id;
+        String teamName;
+        Set<Developer> developers;
+        id = team.getId();
+        teamName = team.getName();
+        developers = team.getDevelopers();
+        System.out.println("<----- Information about the team ----->" + '\n');
+        System.out.println("Team name: " + teamName + '\n'
+                + "Developers: " + developers);
+    }
+
     private void read() {
         while (true) {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID team: ");
-                System.out.println(teamController.read(Long.parseLong(reader.readLine())));
+                showDetailsOfTheTeam(teamController.read(Long.parseLong(reader.readLine())));
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {

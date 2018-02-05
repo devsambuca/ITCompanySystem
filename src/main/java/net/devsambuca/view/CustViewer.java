@@ -53,22 +53,20 @@ public class CustViewer {
         }
     }
 
-    private void showDeveloper(Customer customer) {
-        Long id;
+    private void showDetailsOfTheCustomer(Customer customer) {
         String firstName;
         String lastName;
         String address;
         Set<Project> projects;
-        id = customer.getId();
         firstName = customer.getFirstName();
         lastName = customer.getLastName();
         address = customer.getAdress();
         projects = customer.getProjects();
-        System.out.println(id + "," +
-                firstName + ","
-                + lastName + ","
-                + projects + ","
-                + address);
+        System.out.println("<----- Information about the customer ----->" + '\n');
+        System.out.println("First name: " + firstName + '\n'
+                + "Last name: "+ lastName + '\n'
+                + "Projects: " + projects + '\n'
+                + "Address: " + address);
     }
 
     private void pullOutOf(Customer customer){
@@ -86,7 +84,7 @@ public class CustViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                showDeveloper(custController.read(Long.parseLong(reader.readLine())));
+                showDetailsOfTheCustomer(custController.read(Long.parseLong(reader.readLine())));
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {

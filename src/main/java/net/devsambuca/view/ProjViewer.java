@@ -2,10 +2,13 @@ package net.devsambuca.view;
 
 import net.devsambuca.controller.ProjController;
 import net.devsambuca.model.Project;
+import net.devsambuca.model.Team;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Set;
 
 public class ProjViewer {
     boolean exit;
@@ -63,8 +66,8 @@ public class ProjViewer {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("\nInput ID: ");
-                projController.read(Long.parseLong(reader.readLine()));
-                System.out.println(reader);
+                showDetailsOfTheProject(projController.read(Long.parseLong(reader.readLine())));
+
             } catch (NumberFormatException e) {
                 System.out.print("Invalid selection. Please try again.");
             } catch (IOException e) {
@@ -120,6 +123,16 @@ public class ProjViewer {
         List<Project> projects = projController.getAll();
         for(Project project : projects)
             pullOutOf(project);
+    }
+
+    private void showDetailsOfTheProject(Project project) {
+        String projectName;
+        Set<Team> teams;
+        projectName = project.getName();
+        teams = project.getTeams();
+        System.out.println("<----- Information about the project ----->" + '\n');
+        System.out.println("Project name: " + projectName + '\n' +
+                "Teams: " + teams);
     }
 
     private void returnMainMenu() {

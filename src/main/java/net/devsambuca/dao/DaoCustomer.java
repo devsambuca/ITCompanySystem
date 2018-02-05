@@ -112,9 +112,8 @@ public class DaoCustomer implements DaoImp<Customer> {
     }
 
     public List<Customer> getAll() {
-        List<Customer> customerList = new ArrayList<Customer>();
+        List<Customer> customerList = new ArrayList<>();
         try {
-            // find the file with the customer date
             File customerFile = new File(FILE_PATH);
             Scanner customerScanner = new Scanner(customerFile);
             while (customerScanner.hasNext()) {
