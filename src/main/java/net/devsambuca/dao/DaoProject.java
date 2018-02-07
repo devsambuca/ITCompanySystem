@@ -5,7 +5,7 @@ import net.devsambuca.model.Team;
 import java.io.*;
 import java.util.*;
 
-public class DaoProject implements DaoImp<Project> {
+public class DaoProject implements GenericDAO<Project> {
     public static final String FILE_PATH = "src/main/resources/project.txt";
 
     public void create(Project project) {

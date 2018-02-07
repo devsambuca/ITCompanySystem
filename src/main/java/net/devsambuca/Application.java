@@ -4,7 +4,7 @@ import net.devsambuca.view.ViewEntity;
 
 import java.io.IOException;
 
-public class Main {
+public class Application {
 
     public static void main(String[] args) throws IOException {
         ViewEntity viewEntity = new ViewEntity();

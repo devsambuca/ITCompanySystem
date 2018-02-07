@@ -1,12 +1,12 @@
 package net.devsambuca.controller;
 
-import net.devsambuca.dao.DaoImp;
+import net.devsambuca.dao.GenericDAO;
 import net.devsambuca.dao.DaoDeveloper;
 import net.devsambuca.model.Developer;
-import java.io.FileNotFoundException;
+
 import java.util.List;
 
-public class DevController implements DaoImp<Developer> {
+public class DevController implements GenericDAO<Developer> {
 
     private DaoDeveloper developerDAO = new DaoDeveloper();
 

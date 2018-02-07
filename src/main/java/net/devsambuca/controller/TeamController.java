@@ -1,11 +1,11 @@
 package net.devsambuca.controller;
 
-import net.devsambuca.dao.DaoImp;
+import net.devsambuca.dao.GenericDAO;
 import net.devsambuca.dao.DaoTeam;
 import net.devsambuca.model.Team;
 import java.util.List;
 
-public class TeamController implements DaoImp<Team> {
+public class TeamController implements GenericDAO<Team> {
 
         private DaoTeam teamDAO = new DaoTeam();
 

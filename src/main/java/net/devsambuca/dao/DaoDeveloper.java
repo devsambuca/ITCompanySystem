@@ -7,7 +7,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class DaoDeveloper{ //implements DaoImp<Developer> {
+public class DaoDeveloper implements GenericDAO<Developer> {
 
     public static final String FILE_PATH = "src/main/resources/developers.txt";
 

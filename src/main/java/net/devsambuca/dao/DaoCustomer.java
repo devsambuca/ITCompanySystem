@@ -2,12 +2,11 @@ package net.devsambuca.dao;
 
 import net.devsambuca.model.Customer;
 import net.devsambuca.model.Project;
-import net.devsambuca.view.CustViewer;
 
 import java.io.*;
 import java.util.*;
 
-public class DaoCustomer implements DaoImp<Customer> {
+public class DaoCustomer implements GenericDAO<Customer> {
 
     public static final String FILE_PATH = "src/main/resources/customers.txt";
 

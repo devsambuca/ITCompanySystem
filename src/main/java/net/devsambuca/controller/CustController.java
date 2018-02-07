@@ -1,12 +1,12 @@
 package net.devsambuca.controller;
 
-import net.devsambuca.dao.DaoImp;
+import net.devsambuca.dao.GenericDAO;
 import net.devsambuca.dao.DaoCustomer;
 import net.devsambuca.model.Customer;
 
 import java.util.List;
 
-public class CustController implements DaoImp<Customer> {
+public class CustController implements GenericDAO<Customer> {
 
     private DaoCustomer customerDAO = new DaoCustomer();
 

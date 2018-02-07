@@ -2,7 +2,7 @@ package net.devsambuca.dao;
 
 import java.io.FileNotFoundException;
 
-public interface DaoImp<T> {
+public interface GenericDAO<T> {
     void create(T t);
     T read(long id);
     void update(T t);

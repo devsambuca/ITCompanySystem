@@ -6,7 +6,7 @@ import net.devsambuca.model.Team;
 import java.io.*;
 import java.util.*;
 
-public class DaoTeam implements DaoImp<Team> {
+public class DaoTeam implements GenericDAO<Team> {
 
     public static final String FILE_PATH = "src/main/resources/teams.txt";
 
